@@ -57,7 +57,7 @@
                 
                 <?php foreach ($cate as $cats) { ?>
 
-                <option selected value="<?php echo $cats['id']?>"><?php echo $cats['name'] ?></option>
+                <option selected value="selected <?php echo $cats['id']?>"><?php echo $cats['name'] ?></option>
 
                 <?php }?> 
 
