@@ -12,7 +12,7 @@
   	 header('location:DS_category.php');
 
   	}else{
-  		echo "fail r";
+  		echo "fail r nhe";
   	}
  
 ?>
