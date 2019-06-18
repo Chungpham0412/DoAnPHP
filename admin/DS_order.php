@@ -37,7 +37,7 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Tên tài khoản</th>
+                <th>Mã khách hàng</th>
                 <th>Tên khách hàng</th>
                 <th>Email</th>
                 <th>Số điện thoại</th>
@@ -54,7 +54,7 @@
                 <td><?php echo $o['name'] ?></td>
                 <td><?php echo $o['email'] ?></td>
                 <td><?php echo $o['phone'] ?></td>
-                <td><?php if($o['status']==1): ?></td>
+                <td><?php if($o['status']==1): ?>
                     <span>Hiển thị</span>
                     <?php else: ?>
                       <span>Ẩn</span>
