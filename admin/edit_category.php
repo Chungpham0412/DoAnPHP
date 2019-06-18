@@ -17,27 +17,24 @@
       <div class="box">
         <div class="box-body">
          <?php
+         //laasy id
          $id = isset($_GET['id']) ? $_GET['id'] : 0;
          $query= mysqli_query($connection,"SELECT * FROM category WHERE id = $id");
          $cat = mysqli_fetch_assoc($query);
 
-         // $cat_
 
-         // echo "pre";
-         // print_r($cat);
-         // echo "/pre";
 
          if(isset($_POST['submit'])){
           $name = $_POST['name'];
           $parent_id=$_POST['parent_id'];
           $ordering=$_POST['ordering'];
           $status=$_POST['status'];
+
+
           $sql_1 = "UPDATE `category` SET name = '$name',parent_id='$parent_id',ordering=$ordering,status=$status WHERE id = $id";
           $res = mysqli_query($connection,$sql_1);
           if ( $res) {
             header('location:DS_category.php');
-            // echo "Thành công";
-           // echo "<script type='text/javascript'>alert('Thành công');</script>";
           }else{
             echo "Bạn đã có tên này trong danh mục";
           }
@@ -55,11 +52,13 @@
 
                 <option value="">Mời bạn chọn</option>
                 
-                <?php foreach ($cate as $cats) { ?>
+                <?php foreach ($cate as $cats) {
+                  $selected = $cats['id'] == $cat['parent_id'] ? 'selected' : '';
+                ?>
+  
+                <option <?php echo $selected ?> value="<?php echo $cats['id'] ?>"><?php echo $cats['name'] ?></option>
 
-                <option value="<?php echo $cats['id']?>"><?php echo $cats['name'] ?></option>
-
-                <?php }?> 
+                <?php } ?> 
 
               </select>
             </div>

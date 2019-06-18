@@ -17,7 +17,7 @@
         <div class="box-body">
           <?php 
             // var_dump($_FILES);
-         if (isset($_POST['name'])) {
+          if (isset($_POST['name'])) {
             $name = $_POST['name'];
             $content = $_POST['content'];
             $category_id = $_POST['category_id'];
@@ -27,15 +27,17 @@
             $image = '';
 
             if (!empty($_FILES['image']['name'])) {
-            $f = $_FILES['image'];
-            $f_name = time(). '-' .$f['name'];
+              $f = $_FILES['image'];
+              $f_name = time(). '-' .$f['name'];
 
-            if (move_uploaded_file($f['tmp_name'], '../uploads/'.$f_name)) {
-             $image = $f_name;
+              if (move_uploaded_file($f['tmp_name'], '../uploads/'.$f_name)) {
+               $image = $f_name;
+             }
            }
-         }
-          $sql = "INSERT INTO `product` ( `name`, `image`, `content`, `category_id`, `price`, `sale_price`, `status`) VALUES ('$name', '$image', '$content', '$category_id', '$price', '$sale_price', '$status')"   ;
-         if (mysqli_query($connection,$sql)) {
+
+           $sql = "INSERT INTO `product` ( `name`, `image`, `content`, `category_id`, `price`, `sale_price`, `status`) VALUES ('$name', '$image', '$content', '$category_id', '$price', '$sale_price', '$status')"   ;
+
+           if (mysqli_query($connection,$sql)) {
             header('location:DS_Product.php');
            // echo "<script type='text/javascript'>alert('Thành công');</script>";
           }else{
@@ -43,69 +45,73 @@
           }
         }
         ?>
-          <form action="" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="">Tên sản phẩm</label>
+            <input type="text" name="name" class="form-control" placeholder="Tên sản phẩm.." >
+          </div>
+          <div class="form-group">
+            <label for="">Ảnh sản phẩm</label>
+            <input type="file" name="image" class="form-control">
+          </div>
+       <!--  <div class="form-group">
+          <label for="">Ảnh sản phẩm</label>
+          <input type="file" name="image_else[]" class="form-control" multiple>
+        </div> -->
+        <div class="row">
+          <div class="col-md-4">
             <div class="form-group">
-              <label for="">Tên sản phẩm</label>
-              <input type="text" name="name" class="form-control" placeholder="Tên sản phẩm.." >
+              <label for="">Danh mục</label>
+              <select name="category_id" class="form-control" required="required">
+                <option value="">Chọn danh mục</option>
+                <?php foreach ($categoryy as $c) : ?>
+                  <option value="<?php echo $c['id']  ?>"><?php echo $c['name'] ?></option>
+                <?php endforeach; ?>
+              </select>
             </div>
+          </div>
+          <div class="col-md-4">
             <div class="form-group">
-              <label for="">Ảnh sản phẩm</label>
-              <input type="file" name="image" class="form-control">
+              <label for="">Giá</label>
+              <input type="text" name="price" class="form-control" id="" placeholder="Giá sản phẩm..">
             </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                <label for="">Danh mục</label>
-                    <select name="category_id" class="form-control" required="required">
-                      <option value="">Chọn danh mục</option>
-                      <?php foreach ($categoryy as $c) : ?>
-                      <option value="<?php echo $c['id']  ?>"><?php echo $c['name'] ?></option>
-                     <?php endforeach; ?>
-                    </select>
-                  </div>
-                </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                <label for="">Giá</label>
-                <input type="text" name="price" class="form-control" id="" placeholder="Giá sản phẩm..">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                <label for="">Giá khuyến mãi</label>
-                <input type="text" name="sale_price" class="form-control" id="" placeholder="Giá khuyến mãi..">
-                </div>
-              </div>
-            </div>
+          </div>
+          <div class="col-md-4">
             <div class="form-group">
-                <label for="">Mô tả</label>
-                  <textarea name="content" id="input" class="form-control" rows="3" placeholder="Mô tả sản phẩm"></textarea>
+              <label for="">Giá khuyến mãi</label>
+              <input type="text" name="sale_price" class="form-control" id="" placeholder="Giá khuyến mãi..">
             </div>
-            <div class="form-group">
-              <label for="">Trạng thái</label>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="status" id="input" value="1" checked="checked">Hiện
-                </label> 
-                <label>
-                  <input type="radio" name="status" id="input" value="0" checked="checked">Ẩn
-                </label>
-              </div>
-            </div>
-            <div class="form-group">
-              
-            <button type="submit" class="btn btn-primary" >Gửi</button>
-            </div>
-          </form>
+          </div>
         </div>
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
+        <div class="form-group">
+          <label for="">Mô tả</label>
+          <textarea name="content" id="input" class="form-control" rows="3" placeholder="Mô tả sản phẩm"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="">Trạng thái</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="status" id="input" value="1" checked="checked">Hiện
+            </label> 
+            <label>
+              <input type="radio" name="status" id="input" value="0" checked="checked">Ẩn
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
 
-    </section>
-    <!-- /.content -->
+          <button type="submit" class="btn btn-primary" >Gửi</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.box-body -->
   </div>
-  <!-- /.content-wrapper -->
+  <!-- /.box -->
+
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 <?php 
 include "footer.php"; 
 ?>

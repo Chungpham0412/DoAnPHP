@@ -66,7 +66,9 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="them_product.php"><i class="fa fa-circle-o"></i> Thêm mới SP</a></li>
+                <li><a href="add_attribute.php"><i class="fa fa-circle-o"></i> Thêm mới thuộc tính</a></li>
                 <li><a href="DS_Product.php"><i class="fa fa-circle-o"></i> Danh sách SP</a></li>
+                <li><a href="DS_attribute.php"><i class="fa fa-circle-o"></i> Danh sách thuộc tính</a></li>
               </ul>
             </li>
             <li class="treeview">
