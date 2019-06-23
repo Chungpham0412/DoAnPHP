@@ -36,7 +36,7 @@
           if ( $res) {
             header('location:DS_category.php');
           }else{
-            echo "Bạn đã có tên này trong danh mục";
+            echo "Lỗi sửa chữa.";
           }
         }
         ?>

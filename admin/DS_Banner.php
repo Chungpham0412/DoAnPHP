@@ -53,8 +53,8 @@
                 </td>
                 <td><?php echo $ban['created'] ?></td>
                 <td>
-                  <a href="" class="btn btn-xs btn-primary">Sửa</a>
-                  <a href="" class="btn btn-xs btn-danger">Xóa</a>
+                  <a href="edit_Banner.php?id=<?php echo $ban['id'] ?>" class="btn btn-xs btn-primary">Sửa</a>
+                  <a href="delete_banner.php?id=<?php echo $ban['id'] ?>" class="btn btn-xs btn-danger">Xóa</a>
                 </td>
               </tr>
             <?php } ?>

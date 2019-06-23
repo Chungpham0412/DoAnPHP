@@ -1,6 +1,8 @@
   <?php
   include "header_admin.php";
   $categoryy= mysqli_query($connection,"SELECT * FROM category where parent_id != 0 && status = 1");
+  $size = mysqli_query($connection,"SELECT * FROM attribute WHERE type= 'size' ");
+  $color = mysqli_query($connection,"SELECT * FROM attribute WHERE type= 'color' ");
   ?>
 
   <div class="content-wrapper">
@@ -25,7 +27,10 @@
             $sale_price = $_POST['sale_price'];
             $status = $_POST['status'];
             $image = '';
-
+            //thêm thuộc tính cho sản phẩm
+            $size = $_POST['size'];
+            $color = $_POST['color'];
+            //upload ảnh chính
             if (!empty($_FILES['image']['name'])) {
               $f = $_FILES['image'];
               $f_name = time(). '-' .$f['name'];
@@ -34,12 +39,40 @@
                $image = $f_name;
              }
            }
+          
 
            $sql = "INSERT INTO `product` ( `name`, `image`, `content`, `category_id`, `price`, `sale_price`, `status`) VALUES ('$name', '$image', '$content', '$category_id', '$price', '$sale_price', '$status')"   ;
 
            if (mysqli_query($connection,$sql)) {
+
+            $product_id = mysqli_insert_id($connection);
+              //add size
+            if (count($size)>0) {
+              foreach ($size as $ss) {
+                mysqli_query($connection, "INSERT INTO product_attribute VALUES ($product_id,$ss) ");
+              }
+            }
+              //add color
+            if (count($color)>0) {
+              foreach ($color as $cl) {
+                mysqli_query($connection, "INSERT INTO product_attribute VALUES ($product_id,$cl) ");
+              }
+            }
+
+             //upload nhiều ảnh
+            if (!empty($_FILES['image_else']['name']) && count($_FILES['image_else']['name'])>0) {
+             $quantity=count($_FILES['image_else']['name']);
+             $f = $_FILES['image_else'];
+             for ($i=0; $i < $quantity; $i++) { 
+              $f_name = time(). '-' .$f['name'][$i];
+              if (move_uploaded_file($f['tmp_name'][$i], '../uploads/'.$f_name)) {
+                mysqli_query($connection, "INSERT INTO product_image(product_id,image) VALUES ($product_id,'$f_name') ");
+                }
+              }
+            }
             header('location:DS_Product.php');
-           // echo "<script type='text/javascript'>alert('Thành công');</script>";
+
+
           }else{
             echo "Lỗi Thêm mới";
           }
@@ -50,14 +83,22 @@
             <label for="">Tên sản phẩm</label>
             <input type="text" name="name" class="form-control" placeholder="Tên sản phẩm.." >
           </div>
-          <div class="form-group">
-            <label for="">Ảnh sản phẩm</label>
-            <input type="file" name="image" class="form-control">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Ảnh sản phẩm</label>
+                <input type="file" name="image" class="form-control" id="add_img">
+                <img src="" alt="" id="show_img" width="200px">
+              </div>
+            </div>
+           <div class="col-md-8">
+              <div class="form-group">
+                <label for="">Ảnh khác</label>
+                <input type="file" name="image_else[]" class="form-control" id="add_img_else" multiple>
+                <div id="show_img_else"></div>
+              </div>
+           </div>
           </div>
-       <!--  <div class="form-group">
-          <label for="">Ảnh sản phẩm</label>
-          <input type="file" name="image_else[]" class="form-control" multiple>
-        </div> -->
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
@@ -83,9 +124,37 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="">Kích thước</label>
+              <?php foreach ($size as $s ) { ?>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="size[]" value="<?php echo $s['id'] ?>">
+                    <?php echo $s['name'] ?>
+                  </label>
+                </div>
+              <?php } ?>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="">Màu sắc</label>
+              <?php foreach ($color as $c) {?>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="color[]" value="<?php echo $c['id'] ?>">
+                    <?php echo $c['name'] ?>
+                  </label>
+                </div>
+              <?php } ?>
+            </div>
+          </div>
+        </div>
         <div class="form-group">
           <label for="">Mô tả</label>
-          <textarea name="content" id="input" class="form-control" rows="3" placeholder="Mô tả sản phẩm"></textarea>
+          <textarea name="content" id="content" class="form-control" ></textarea>
         </div>
         <div class="form-group">
           <label for="">Trạng thái</label>

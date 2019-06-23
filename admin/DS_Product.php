@@ -62,8 +62,9 @@
                 </td>
                 <td><?php echo $pro['created'] ?></td>
                 <td>
-                  <a href="" class="btn btn-xs btn-primary">Sửa</a>
-                  <a href="" class="btn btn-xs btn-danger">Xóa</a>
+                  <a href="product-view.php?id=<?php echo $pro['id'] ?>" class="btn btn-xs btn-success">Xem</a>
+                  <a href="edit_product.php?id=<?php echo $pro['id'] ?>" class="btn btn-xs btn-primary">Sửa</a>
+                  <a href="delete_product.php?id=<?php echo $pro['id'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-xs btn-danger">Xóa</a>
                 </td>
               </tr>
             <?php } ?>
