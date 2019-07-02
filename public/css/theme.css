@@ -4,12 +4,7 @@ body {
   font-family: 'Raleway', sans-serif;
   line-height: 1.6;
 }
-span.label-input100{
-font-family: Times New Roman; 
-font-size: 60px;
- color: white;
- background: red;
-}
+
 .modal-body{
   padding: 100px 70px 
 }

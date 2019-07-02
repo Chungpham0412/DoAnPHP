@@ -36,20 +36,11 @@ $pro_detail = mysqli_fetch_assoc($query);
 
 				<h1 style="padding:0 0 20px 0; text-align: center; font-weight: bold; font-family: Time New Roman; font-size: 30px"><?php echo $pro_detail['name']  ?></h1>
 
-
-							<!-- <div class="reviews-counter clearfix">
-								<div class="rating five-stars pull-left">
-									<div class="star-rating"></div>
-									<div class="star-bg"></div>
-								</div>
-								<span>3 Reviews</span>
-							</div> -->
-
-							<span class="amount" style="padding: 15px 0">
-								<?php if($pro_detail['sale_price']==0) :?>
-									<div class="product-thumb-info-content">
-										<span class="price pull-left" style="text-decoration: none"><?php echo $pro_detail['price']." "."VNĐ" ; ?></span>
-									</div>
+								<span class="amount" style="padding: 15px 0">
+									<?php if($pro_detail['sale_price']==0) :?>
+										<div class="product-thumb-info-content">
+											<span class="price pull-left" style="text-decoration: none"><?php echo $pro_detail['price']." "."VNĐ" ; ?></span>
+										</div>
 									<?php elseif ($pro_detail['sale_price']>0) :?>
 										<div class="product-thumb-info-content">
 											<span class="pull-leftl" style="text-decoration: line-through"><?php echo $pro_detail['price']." "."VNĐ" ; ?></span>
@@ -63,12 +54,8 @@ $pro_detail = mysqli_fetch_assoc($query);
 										<div class="list-sort">
 											<select class="formDropdown">
 												<option>Select Size</option>
-												<option>XS</option>
-												<option>S</option>
-												<option>M</option>
-												<option>L</option>
-												<option>XL</option>
-												<option>XXL</option>
+												<?php foreach ($variable as $key) {?>
+	
 											</select>
 										</div>
 									</li>

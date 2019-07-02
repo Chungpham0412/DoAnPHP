@@ -1,6 +1,13 @@
   <?php
   include "../config/connect.php";
   ob_start();
+  session_start();
+  // $admin = isset( $_SESSION['login']) ?  $_SESSION['login'] : 0;
+  if (!isset($_SESSION['login'])) {
+    header('location: login.php');
+  }else{
+    $admin = $_SESSION['login'];
+  }
   ?>
   <!DOCTYPE html>
   <html>
@@ -37,10 +44,10 @@
 
       <ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi Admin Manager <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $admin['name'] ?><b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="#">Thông tin</a></li>
-            <li><a href="#">Thoát tài khoản</a></li>
+            <li><a href="logout.php">Thoát tài khoản</a></li>
           </ul>
         </li>
       </ul>
@@ -113,11 +120,23 @@
                 </span>
               </a>
             </li>
-            <li class="">
+             <li class="treeview">
+              <a href="#">
+                <i class="fa fa-address-card-o"></i> <span>QL Admin</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="registration.php"><i class="fa fa-circle-o"></i>Thêm mới Admin</a></li>
+                <li><a href="DS_Account_admin.php"><i class="fa fa-circle-o"></i>Danh sách Admin</a></li>
+              </ul>
+            </li>
+           <!--  <li class="">
               <a href="#">
                 <i class="fa fa-address-card-o"></i> <span>QL Admin</span>
               </a>
-            </li>
+            </li> -->
 
           </ul>
         </section>

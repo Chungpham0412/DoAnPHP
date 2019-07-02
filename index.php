@@ -99,7 +99,7 @@ $product_woman = mysqli_query($connection,"SELECT * FROM `category` join `produc
 												<a href="product_detail.php?id=<?php echo $pro['id']?>" class="view-product">
 													<span><i class="fa fa-external-link"></i></span>
 												</a>
-												<a href="" class="add-to-cart-product">
+												<a href="handling_cart.php?id=<?php echo $pro['id']?>" class="add-to-cart-product">
 													<span><i class="fa fa-shopping-cart"></i></span>
 												</a>
 											</span>
@@ -156,7 +156,7 @@ $product_woman = mysqli_query($connection,"SELECT * FROM `category` join `produc
 														<a href="product_detail.php?id=<?php echo $pro_man['id'] ?>">
 															<span><i class="fa fa-external-link"></i></span>
 														</a>
-														<a href="shop-cart-full.html" class="add-to-cart-product">
+														<a href="handling_cart.php?id=<?php echo $pro_man['id']?>" class="add-to-cart-product">
 															<span><i class="fa fa-shopping-cart"></i></span>
 														</a>
 													</span>
@@ -195,7 +195,7 @@ $product_woman = mysqli_query($connection,"SELECT * FROM `category` join `produc
 														<a href="product_detail.php?id=<?php echo $pro_woman['id'] ?>">
 															<span><i class="fa fa-external-link"></i></span>
 														</a>
-														<a href="shop-cart-full.html" class="add-to-cart-product">
+														<a href="handling_cart.php?id=<?php echo $pro_woman['id']?>" class="add-to-cart-product">
 															<span><i class="fa fa-shopping-cart"></i></span>
 														</a>
 													</span>

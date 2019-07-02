@@ -1,9 +1,16 @@
   <?php
   include "header_admin.php";
+   $id = isset($_GET['id']) ? $_GET['id'] : 0;
   $categoryy= mysqli_query($connection,"SELECT * FROM category where parent_id != 0 && status = 1");
-  $size = mysqli_query($connection,"SELECT * FROM attribute WHERE type= 'size' ");
-  $color = mysqli_query($connection,"SELECT * FROM attribute WHERE type= 'color' ");
-#  $img_elses = mysqli_query($connection,"SELECT * FROM product_image WHERE product_id = $id");
+  $sizes = mysqli_query($connection,"SELECT * FROM attribute WHERE type= 'size' ");
+  $colors = mysqli_query($connection,"SELECT * FROM attribute WHERE type= 'color' ");
+  $img_elses = mysqli_query($connection,"SELECT * FROM product_image WHERE product_id = $id");
+$attr = mysqli_query($connection,"SELECT attribute_id FROM product_attribute WHERE product_id = $id");
+        $arrayCheck = [];
+          foreach ($attr as $at) {
+
+            $arrayCheck[] = $at['attribute_id'];
+        }
 
   ?>
 
@@ -21,22 +28,15 @@
         <div class="box-body">
           <?php 
           //lấy id
-          $id = isset($_GET['id']) ? $_GET['id'] : 0;
+          
           $query= mysqli_query($connection,"SELECT * FROM product WHERE id = $id");
           $pro = mysqli_fetch_assoc($query);
-
-          if (isset($_POST['submit'])) {
-            $name = $_POST['name'];
-            $content = $_POST['content'];
-            $category_id = $_POST['category_id'];
-            $price = $_POST['price'];
-            $sale_price = $_POST['sale_price'];
-            $status = $_POST['status'];
-            $image = '';
-            $size = $_POST['size'];
-            $color = $_POST['color'];
-
-            //sửa tên ảnh
+          
+        
+          
+        
+           //sửa tên ảnh
+           $image = $pro['image'];
             if (!empty($_FILES['image']['name'])) {
               $f = $_FILES['image'];
               $f_name = time(). '-' .$f['name'];
@@ -45,27 +45,38 @@
                $image = $f_name;
              }
            }
-           //Thêm dữ liệu
-           $sql = "UPDATE `product` SET `name`= '$name', `image`=$image, `content`='$content', `category_id`=$category_id, `price`=$price, `sale_price`=$sale_price, `status`=$status WHERE id=$id"   ;
+          if (isset($_POST['submit'])) {
+            $name = $_POST['name'];
+            $content = $_POST['content'];
+            $category_id = $_POST['category_id'];
+            $price = $_POST['price'];
+            $sale_price = $_POST['sale_price'];
+            $status = $_POST['status'];
+           
+            $size = $_POST['size'];
+            $color = $_POST['color'];
 
-           if (mysqli_query($connection,$sql)) {
-            //lấy id
-            $product_id = mysqli_insert_id($connection);
-            if (count($size)>0) {
-              foreach ($size as $ss) {
-                mysqli_query($connection, "UPDATE product_attribute SET ss=$ss ");
+            //chưa update được img_else
+            // $image_else=$_POST['image_else[]'];
+           
+           //Update dữ liệu
+           $sql = "UPDATE `product` SET `name` = '$name', `image` = '$image', `content` = ' $content ',`category_id`='$category_id', `price` = ' $price', `sale_price` = ' $sale_price', `status` = '$status' WHERE `product`.`id` = $id";
+          if (mysqli_query($connection,$sql)) {
+            // echo " thanh cong"; 
+            $deleteAttr = mysqli_query($connection,"DELETE FROM product_attribute WHERE product_id = $id");
+
+            if(isset($_POST['color'])){
+              foreach ($color as $col) {
+               $updateColor = mysqli_query($connection,"INSERT INTO `product_attribute` (`product_id`, `attribute_id`) VALUES ('$id', '$col')");
               }
             }
+             if(isset($_POST['size'])){
+              foreach ($size as $sis) {
+               $updateColor = mysqli_query($connection,"INSERT INTO `product_attribute` (`product_id`, `attribute_id`) VALUES ('$id', '$sis')");
+              header('location:DS_Product.php');
 
-            if (count($color)>0) {
-              foreach ($color as $cl) {
-                mysqli_query($connection, "UPDATE product_attribute SET cl=$cl ");
               }
             }
-
-            header('location:DS_Product.php');
-
-
           }else{
             echo "Lỗi cập nhập!";
           }
@@ -81,7 +92,11 @@
              <div class="form-group">
               <label for="">Ảnh sản phẩm</label>
               <input type="file" name="image" id="add_img" class="form-control">
-              <img src="../uploads/<?php echo $pro['image']?>" alt="" style="width: 100px" id="show_img">
+              <div class="col-md-3">
+                <a href="#" class="thumbnail">
+              <img src="../uploads/<?php echo $pro['image']?>" alt="" style="width: " id="show_img">
+                </a>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -89,13 +104,13 @@
             <label for="">Ảnh khác</label>
             <input type="file" name="image_else[]" id="add_img_else" class="form-control" multiple>
             <div id="show_img_else">
-              <?php foreach($img_elses as $img) { ?>
+              <?php if($img_elses): foreach($img_elses as $img) : ?>
                 <div class="col-md-3">
-                  <a href="" class="thumbnail">
+                  <a href="#" class="thumbnail">
                     <img src="../uploads/<?php echo $img['image'] ?>" alt="">
                   </a>
                 </div>
-              <?php } ?>
+              <?php endforeach; endif; ?>
             </div>
           </div>
         </div>
@@ -107,11 +122,10 @@
             <label for="">Danh mục</label>
             <select name="category_id" class="form-control" required="required">
               <option value="">Chọn danh mục</option>
-              <?php foreach ($categoryy as $c) { 
-                $selected=$c['id']==$pro['category_id'] ? 'selected' : '';
+              <?php foreach ($categoryy as $ca) { 
+                $selected=$ca['id']==$pro['category_id'] ? 'selected' : '';
                 ?>
-
-                <option <?php echo $selected ?> value="<?php echo $c['id']  ?>"><?php echo $c['name'] ?></option>
+                <option <?php echo $selected ?> value="<?php echo $ca['id']  ?>"><?php echo $ca['name'] ?></option>
 
               <?php } ?>
             </select>
@@ -134,12 +148,11 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="">Kích thước</label>
-            <?php foreach ($size as $s ) { 
-              $checkbox=$s['atrribute_id']==$pro['id'] ? 'checked' : '';
-              ?>
+            <?php foreach ($sizes as $s ) {  ?>
+          
               <div class="checkbox">
                 <label>
-                  <input <?php echo $checkbox ?> type="checkbox" name="size[]" value="<?php echo $s['id'] ?>">
+                  <input <?php echo in_array($s['id'], $arrayCheck) ? 'checked' : '' ; ?>  type="checkbox" name="size[]" value="<?php echo $s['id'] ?>">
                   <?php echo $s['name'] ?>
                 </label>
               </div>
@@ -149,11 +162,11 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="">Màu sắc</label>
-            <?php foreach ($color as $c) {?>
+            <?php foreach ($colors as $cl) {?>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="color[]" value="<?php echo $c['id'] ?>">
-                  <?php echo $c['name'] ?>
+                  <input <?php echo in_array($cl["id"], $arrayCheck) ? 'checked' : ''; ?>  type="checkbox" name="color[]" value="<?php echo $cl['id'] ?>">
+                  <?php echo $cl['name'] ?>
                 </label>
               </div>
             <?php } ?>

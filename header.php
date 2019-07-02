@@ -1,5 +1,6 @@
-<?php include "config/connect.php"
-
+<?php include "config/connect.php";
+session_start();
+ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +37,10 @@
 	<link href="public/css/theme-elements.css" rel="stylesheet">
 	<link href="public/css/theme-blog.css" rel="stylesheet">
 	<link href="public/css/theme-shop.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="public/css/main.css">
+
 	<link href="public/css/theme.css" rel="stylesheet">
+	<!-- <link href="theme.css" rel="stylesheet"> -->
 	
 	<!-- Style Switcher-->
 	<link rel="stylesheet" href="public/style-switcher/css/style-switcher.css">
@@ -46,40 +50,58 @@
 	<link href="public/css/theme-responsive.css" rel="stylesheet">
 
 	<!-- login -->
-	<link rel="stylesheet" type="images/png" href="public/login/images/icons/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="public/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="public/login/fonts/iconic/css/material-design-iconic-font.min.css">
-	<link rel="stylesheet" type="text/css" href="public/login/vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="public/login/vendor/css-hamburgers/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="public/login/vendor/animsition/css/animsition.min.css">
-	<link rel="stylesheet" type="text/css" href="public/login/vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="public/login/vendor/daterangepicker/daterangepicker.css">
-	<link rel="stylesheet" type="text/css" href="public/login/css/util.css">
-	<link rel="stylesheet" type="text/css" href="public/login/css/main.css">
+	<link rel="stylesheet" type="images/png" href="public/images/icons/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="public/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="public/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="public/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="public/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="public/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="public/vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="public/css/util.css">
 </head>
 <body>
-		<header>
-			
-			<nav class="navbar navbar-default navbar-main navbar-main-slide" role="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<a class="logo" href="index.php"><img src="public/images/logo.png" alt="Flatize"></a> </div>
-					<ul class="nav navbar-nav navbar-act pull-right">
-						<!-- login -->
-						<li class="login dropdown" ><a href=""  class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="registration.php">Đăng kí</a></li>
-								<li><a href="login.php">Đăng nhập</a></li>
-							</ul>
-						</li>
-						<!-- Tìm kiếm -->
-						<li class="search"><a href="javascript:void(0);" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-search"></i></a></li>
-					</ul>
-					<div class="navbar-collapse collapse">
-						<ul class="nav navbar-nav pull-right">
-							<!-- <li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a></li> -->
+	<header>
 
-							<li class="dropdown"><a href="product.php" class="dropdown-toggle" data-toggle="dropdown">Sản phẩm</a>
+		<nav class="navbar navbar-default navbar-main navbar-main-slide" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span> 
+							<span class="icon-bar"></span> <span class="icon-bar"></span> 
+							<span class="icon-bar"></span> 
+						</button>
+					<a class="logo" href="index.php"><img src="public/images/logo.png" alt="Flatize"></a> 
+
+					<!-- Tìm kiếm -->
+						
+				</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown">
+								
+									
+								<?php if (isset($_SESSION['login'])) :
+									$c= $_SESSION['login'];
+								?>
+									<a href="#"><i class="fa fa-user-circle"></i></a>
+									<ul class="dropdown-menu">
+										<li><a href="profile.php">Hi,<?php echo $c['name'] ?></a></li>
+										<li><a href="logout.php">Đăng xuất</a></li>
+									</ul>
+								<?php else : ?>
+									<a href="#"><i class="fa fa-user"></i></a>
+									<ul class="dropdown-menu">
+										<li><a href="registration.php">Đăng kí</a></li>
+										<li><a href="login.php">Đăng nhập</a></li>
+									</ul>
+								<?php endif; ?>
+								
+							</li>
+						</ul>
+						<ul class="nav navbar-nav pull-right">
+							<li class="dropdown"><a href="product.php">Sản phẩm</a>
+								<!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"></a> -->
 								<ul class="dropdown-menu">
 									<li class="dropdown-submenu">
 										<a href="product_man.php">Thời trang nam</a>
@@ -110,9 +132,12 @@
 								</ul>
 							</li>
 							<li><a href="product.php">Blog</a></li>
-							<li><a href="#" class="glyphicon glyphicon-shopping-cart"></a></li>
+							<li><a href="cart.php" class="glyphicon glyphicon-shopping-cart"></a></li>
+							<li class="search"><a href="javascript:void(0);" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-search"></i></a></li>
 						</ul>
+
 					</div><!--/.nav-collapse --> 
 				</div><!--/.container-fluid --> 
 			</nav>
 		</header>
+		

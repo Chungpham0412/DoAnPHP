@@ -1,7 +1,7 @@
   <?php
   include "header_admin.php";
 
- $account=mysqli_query($connection,"SELECT * FROM account")
+ $account=mysqli_query($connection,"SELECT * FROM account WHERE level = 0" )
  
   ?>
   
