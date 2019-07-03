@@ -77,7 +77,7 @@
 	
 				<div class="text-right p-t-8 p-b-31">
 					<a href="#">
-						Forgot password?
+						Quên mật khẩu?
 					</a>
 				</div>
 	
@@ -112,11 +112,11 @@
 	
 				<div class="flex-col-c p-t-155">
 					<span class="txt1 p-b-17">
-						Or Sign Up Using
+						Bạn chưa có tài khoản?
 					</span>
 	
 					<a href="registration.php" class="txt2">
-						Sign Up
+						Đăng kí ngay
 					</a>
 				</div>
 			</form>

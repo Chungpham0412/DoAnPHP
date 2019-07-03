@@ -1,5 +1,5 @@
 <?php include "header.php"; 
-	$carts= $_SESSION['cart'] ? $_SESSION['cart'] : 0;
+	$carts= isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 ?>
 <br>
 <div class="container">
@@ -28,9 +28,16 @@
 						<td>
 							<img src="uploads/<?php echo $c['image']?>" width="50px">
 						</td>
-						<td><?php echo $c['price'] ?></td>
-						<td><?php echo $c['quantity']?></td>
-						<td><?php echo $c['price']*$c['quantity'] ?></td>
+						<td><?php echo number_format( $c['price']).'đ' ?></td>
+						<td>
+							<form action="handling_cart.php" method="GET">
+								<input name="id" type="hidden" value="<?php echo $c['id'] ?>">
+								<input name="action" type="hidden" value="update">
+								<input name="quantity" value="<?php echo $c['quantity']?>">
+								<input type="submit" name="" value="cập nhập">
+							</form>
+						</td>
+						<td><?php echo number_format( $c['price']*$c['quantity']) ?>đ</td>
 						<td>
 							<a href="delete_cart.php?id=<?php echo $c['id'] ?>" class="btn btn-xs btn-success">Xóa</a>
 						</td>
@@ -43,7 +50,9 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td>1 củ</td>
+					<td>
+						<?php echo number_format(tong_tien()).'đ' ?>
+					</td>
 					<td></td>
 				</tr>
 			</table>
@@ -53,9 +62,11 @@
 		<div class="col-md-10">
 			
 			<a type="button" href="index.php" class="btn btn-primary">Tiếp tục mua hàng</a>
+			<a type="button" href="handling_cart.php?action=clear" class="btn btn-primary">Xóa hết</a>
 		</div>
 		<div class="col-md-2">
-			<a type="button" class="btn btn-primary">Thanh toán</a>
+			<a type="button" href="orders.php" class="btn btn-primary">Thanh toán</a>
 		</div>
 	</div>
 </div>
+<?php include "footer_cart.php" ?>

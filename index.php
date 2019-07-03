@@ -5,9 +5,11 @@ $banner = mysqli_query($connection,"SELECT * FROM banner where status = 1 ORDER 
 //Top 10 sell
 $product_sale = mysqli_query($connection,"SELECT * FROM product where sale_price > 0 && status = 1 ORDER BY sale_price DESC LIMIT 10");
 //man
-$product_man = mysqli_query($connection,"SELECT * FROM `category` join `product` on product.category_id = category.id where parent_id = 1 ORDER BY `product`.`name` DESC LIMIT 8");
+$nam="SELECT product.id, product.name,product.image,product.price,product.sale_price,product.status,category.parent_id FROM product join category on product.category_id=category.id WHERE parent_id = 1 && product.status = 1 ORDER BY product.name DESC LIMIT 8";
+$product_man = mysqli_query($connection,$nam);
 //women
-$product_woman = mysqli_query($connection,"SELECT * FROM `category` join `product` on product.category_id = category.id where parent_id = 2 ORDER BY `product`.`name` DESC LIMIT 8");
+$nu="SELECT product.id, product.name,product.image,product.price,product.sale_price,product.status,category.parent_id FROM product join category on product.category_id=category.id WHERE parent_id = 2 && product.status = 1 ORDER BY product.name DESC LIMIT 8";
+$product_woman = mysqli_query($connection,$nu);
 ?>		
 		<!-- Begin Login -->
 
@@ -23,8 +25,8 @@ $product_woman = mysqli_query($connection,"SELECT * FROM `category` join `produc
 						<div class="item-caption">
 							<div class="item-caption-inner">
 								<div class="item-caption-wrap">
-									<p class="item-cat"><a href="#"><?php echo $ban['name'] ?></a></p>
-									<h2>Up to 50% off<br>on selected items</h2>
+									<p class="item-cat"><a href="#"></a></p>
+									<h2>Up to 50% off<br><?php echo $ban['name'] ?></h2>
 									<a href="#" class="btn btn-white hidden-xs">Shop Now</a>
 								</div>
 							</div>
@@ -107,9 +109,9 @@ $product_woman = mysqli_query($connection,"SELECT * FROM `category` join `produc
 										</div>
 
 										<div class="product-thumb-info-content">
-											<span class="price_ pull-right" style="text-decoration: line-through"><?php echo $pro['price']." "."VNĐ" ; ?></span>
+											<span class="price_ pull-right" style="text-decoration: line-through"><?php echo number_format($pro['price'])." "."đ" ; ?></span>
 											<h4><a href=""><?php echo $pro['name'] ?></a></h4>
-											<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo $pro['sale_price']." "."VNĐ" ?></span></span>
+											<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo number_format($pro['sale_price'])." "."đ" ?></span></span>
 										</div>
 									</div>
 								</div>
@@ -165,14 +167,14 @@ $product_woman = mysqli_query($connection,"SELECT * FROM `category` join `produc
 												<div class="product-thumb-info-content" style="height: 30px">
 													<?php if($pro_man['sale_price']==0) :?>
 														<div class="product-thumb-info-content">
-															<span class="price pull-right" style="text-decoration: none"><?php echo $pro_man['price']." "."VNĐ" ; ?></span>
+															<span class="price pull-right" style="text-decoration: none"><?php echo number_format($pro_man['price'])." "."đ" ; ?></span>
 															<h4><a href=""><?php echo $pro_man['name'] ?></a></h4>
 														</div>
 														<?php elseif ($pro_man['sale_price']>0) :?>
 															<div class="product-thumb-info-content">
-																<span class="price_ pull-right" style="text-decoration: line-through"><?php echo $pro_man['price']." "."VNĐ" ; ?></span>
+																<span class="price_ pull-right" style="text-decoration: line-through"><?php echo number_format($pro_man['price'])." "."đ" ; ?></span>
 																<h4><a href=""><?php echo $pro_man['name'] ?></a></h4>
-																<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo $pro_man['sale_price']." "."VNĐ" ?></span></span>
+																<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo number_format($pro_man['sale_price'])." "."đ" ?></span></span>
 															</div>
 														<?php endif; ?>
 													</div>
@@ -204,14 +206,14 @@ $product_woman = mysqli_query($connection,"SELECT * FROM `category` join `produc
 												<div class="product-thumb-info-content" style="height: 30px">
 													<?php if($pro_woman['sale_price']==0) :?>
 														<div class="product-thumb-info-content" >
-															<span class="price pull-right" style="text-decoration: none"><?php echo $pro_woman['price']." "."VNĐ" ; ?></span>
+															<span class="price pull-right" style="text-decoration: none"><?php echo number_format($pro_woman['price'])." "."đ" ; ?></span>
 															<h4><a href=""><?php echo $pro_woman['name'] ?></a></h4>
 														</div>
 														<?php elseif ($pro_woman['sale_price']>0) :?>
 															<div class="product-thumb-info-content">
-																<span class="price_ pull-right" style="text-decoration: line-through"><?php echo $pro_woman['price']." "."VNĐ" ; ?></span>
+																<span class="price_ pull-right" style="text-decoration: line-through"><?php echo number_format($pro_woman['price'])." "."đ" ; ?></span>
 																<h4><a href=""><?php echo $pro_woman['name'] ?></a></h4>
-																<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo $pro_woman['sale_price']." "."VNĐ" ?></span></span>
+																<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo number_format($pro_woman['sale_price'])." "."đ" ?></span></span>
 															</div>
 														<?php endif; ?>
 													</div>

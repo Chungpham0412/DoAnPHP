@@ -241,9 +241,10 @@ label {
 
 /* line 202, ../sass/theme-elements.scss */
 .btn-white {
+  /* background: green;   */
   background-color: transparent;
   border-color: white;
-  color: white;
+  color: black;
 }
 /* line 206, ../sass/theme-elements.scss */
 .btn-white:hover, .btn-white:focus {

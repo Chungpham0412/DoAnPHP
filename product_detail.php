@@ -1,4 +1,6 @@
 <?php include "header.php"; 
+//sanr phaam lien qua
+$pro = mysqli_query($connection,"SELECT * FROM product WHERE status = 1 LIMIT 10");
 
 $id = isset($_GET['id']) ? $_GET['id'] : 0;
 $query= mysqli_query($connection,"SELECT * FROM product WHERE id = $id");
@@ -54,7 +56,7 @@ $pro_detail = mysqli_fetch_assoc($query);
 										<div class="list-sort">
 											<select class="formDropdown">
 												<option>Select Size</option>
-												<?php foreach ($variable as $key) {?>
+										
 	
 											</select>
 										</div>
@@ -153,34 +155,38 @@ $pro_detail = mysqli_fetch_assoc($query);
 						<h2 class="title"><span>Sản phẩm liên quan</span></h2>
 						<div class="row">
 							<div id="owl-product-slide" class="owl-carousel product-slide">
+								<?php foreach ($pro as $p) {?>
 								<div class="col-md-12">
 									<div class="item product">
-										<div class="product-thumb-info">
-
-											<div class="product-thumb-info-image">
-												<span class="product-thumb-info-act">
-													<a href="javascript:void(0);" data-toggle="modal" data-target=".quickview-wrapper" class="view-product">
-														<span><i class="fa fa-external-link"></i></span>
-													</a>
-													<a href="shop-cart-full.html" class="add-to-cart-product">
-														<span><i class="fa fa-shopping-cart"></i></span>
-													</a>
-												</span>
-												<img alt="" class="img-responsive" src="public/images/content/products/product-1.jpg">
-											</div>
-
-											<div class="product-thumb-info-content">
-												<span class="price pull-right">29.99 USD</span>
-												<h4><a href="shop-product-detail2.html">Denim shirt</a></h4>
-												<span class="item-cat"><small><a href="#">Jackets</a></small></span>
-											</div>
+									<div class="product-thumb-info">
+										<div class="product-thumb-info-image">
+											<span class="product-thumb-info-act">
+												<a href="product_detail.php?id=<?php echo $p['id'] ?>">
+													<span><i class="fa fa-external-link"></i></span>
+												</a>
+												<a href="handling_cart.php?id=<?php echo $p['id']?>" class="add-to-cart-product">
+													<span><i class="fa fa-shopping-cart"></i></span>
+												</a>
+											</span>
+											<img alt="" class="img-responsive" src="uploads/<?php echo $p['image'] ?>">
 										</div>
+										<?php if($p['sale_price']==0) :?>
+										<div class="product-thumb-info-content" style="height: 30px">
+											<span class="price pull-right" style="text-decoration: none"><?php echo number_format($p['price'])." "."đ" ; ?></span>
+											<h4><a href=""><?php echo $p['name'] ?></a></h4>
+										</div>
+										<?php elseif ($p['sale_price']>0) :?>
+										<div class="product-thumb-info-content" style="height: 30px">
+											<span class="price_ pull-right" style="text-decoration: line-through"><?php echo number_format($p['price'])." "."đ" ; ?></span>
+											<h4><a href=""><?php echo $p['name'] ?></a></h4>
+											<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo number_format($p['sale_price'])." "."đ" ?></span></span>
+										</div>
+										
+									<?php endif; ?>
 									</div>
 								</div>
-
-
-
-
+								</div>
+								<?php } ?>
 							</div>
 						</div>
 					</div>

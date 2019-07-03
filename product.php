@@ -1,7 +1,7 @@
 <?php 
 include "header.php";
 
-$product = mysqli_query($connection,"SELECT * FROM product");
+$product = mysqli_query($connection,"SELECT * FROM product WHERE status = 1");
 ?>		
 
 		<!-- Begin Main -->
@@ -40,14 +40,14 @@ $product = mysqli_query($connection,"SELECT * FROM product");
 										</div>
 										<?php if($pro['sale_price']==0) :?>
 										<div class="product-thumb-info-content" style="height: 30px">
-											<span class="price pull-right" style="text-decoration: none"><?php echo $pro['price']." "."VNĐ" ; ?></span>
+											<span class="price pull-right" style="text-decoration: none"><?php echo number_format($pro['price'])." "."đ" ; ?></span>
 											<h4><a href=""><?php echo $pro['name'] ?></a></h4>
 										</div>
 										<?php elseif ($pro['sale_price']>0) :?>
 										<div class="product-thumb-info-content" style="height: 30px">
-											<span class="price_ pull-right" style="text-decoration: line-through"><?php echo $pro['price']." "."VNĐ" ; ?></span>
+											<span class="price_ pull-right" style="text-decoration: line-through"><?php echo number_format($pro['price'])." "."đ" ; ?></span>
 											<h4><a href=""><?php echo $pro['name'] ?></a></h4>
-											<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo $pro['sale_price']." "."VNĐ" ?></span></span>
+											<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo number_format($pro['sale_price'])." "."đ" ?></span></span>
 										</div>
 										
 									<?php endif; ?>

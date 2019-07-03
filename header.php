@@ -1,6 +1,7 @@
 <?php include "config/connect.php";
 session_start();
 ob_start();
+include "config/cart-function.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -132,10 +133,13 @@ ob_start();
 								</ul>
 							</li>
 							<li><a href="product.php">Blog</a></li>
-							<li><a href="cart.php" class="glyphicon glyphicon-shopping-cart"></a></li>
+							<li>
+								<a href="cart.php" class="glyphicon glyphicon-shopping-cart">
+									<?php echo tong_so_luong() ?>
+								</a>
+							</li>
 							<li class="search"><a href="javascript:void(0);" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-search"></i></a></li>
 						</ul>
-
 					</div><!--/.nav-collapse --> 
 				</div><!--/.container-fluid --> 
 			</nav>
