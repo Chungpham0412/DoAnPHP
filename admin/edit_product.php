@@ -5,7 +5,8 @@
   $sizes = mysqli_query($connection,"SELECT * FROM attribute WHERE type= 'size' ");
   $colors = mysqli_query($connection,"SELECT * FROM attribute WHERE type= 'color' ");
   $img_elses = mysqli_query($connection,"SELECT * FROM product_image WHERE product_id = $id");
-$attr = mysqli_query($connection,"SELECT attribute_id FROM product_attribute WHERE product_id = $id");
+  $attr = mysqli_query($connection,"SELECT attribute_id FROM product_attribute WHERE product_id = $id");
+   
         $arrayCheck = [];
           foreach ($attr as $at) {
 
@@ -31,8 +32,8 @@ $attr = mysqli_query($connection,"SELECT attribute_id FROM product_attribute WHE
           
           $query= mysqli_query($connection,"SELECT * FROM product WHERE id = $id");
           $pro = mysqli_fetch_assoc($query);
-          
-        
+      
+
           
         
            //sửa tên ảnh
@@ -45,6 +46,25 @@ $attr = mysqli_query($connection,"SELECT attribute_id FROM product_attribute WHE
                $image = $f_name;
              }
            }
+
+           if (!empty($_FILES['image_else']['name']) && count($_FILES['image_else']['name'])>0) {
+              $deleteImage = mysqli_query($connection, "DELETE FROM product_image WHERE product_id = $id");
+              $quantity=count($_FILES['image_else']['name']);
+              $f = $_FILES['image_else'];
+                for ($i=0; $i < $quantity; $i++) { 
+                  $f_name = time(). '-' .$f['name'][$i];
+                    if (move_uploaded_file($f['tmp_name'][$i], '../uploads/'.$f_name)) {
+
+                      $p =  mysqli_query($connection, "INSERT INTO product_image(product_id,image) VALUES ($id,'$f_name') ");
+
+            
+                }
+              }
+            }
+
+
+
+
           if (isset($_POST['submit'])) {
             $name = $_POST['name'];
             $content = $_POST['content'];
@@ -60,10 +80,13 @@ $attr = mysqli_query($connection,"SELECT attribute_id FROM product_attribute WHE
             // $image_else=$_POST['image_else[]'];
            
            //Update dữ liệu
+
            $sql = "UPDATE `product` SET `name` = '$name', `image` = '$image', `content` = ' $content ',`category_id`='$category_id', `price` = ' $price', `sale_price` = ' $sale_price', `status` = '$status' WHERE `product`.`id` = $id";
           if (mysqli_query($connection,$sql)) {
             // echo " thanh cong"; 
+
             $deleteAttr = mysqli_query($connection,"DELETE FROM product_attribute WHERE product_id = $id");
+         
 
             if(isset($_POST['color'])){
               foreach ($color as $col) {
@@ -74,7 +97,6 @@ $attr = mysqli_query($connection,"SELECT attribute_id FROM product_attribute WHE
               foreach ($size as $sis) {
                $updateColor = mysqli_query($connection,"INSERT INTO `product_attribute` (`product_id`, `attribute_id`) VALUES ('$id', '$sis')");
               header('location:DS_Product.php');
-
               }
             }
           }else{

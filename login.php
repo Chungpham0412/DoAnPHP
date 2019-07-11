@@ -8,15 +8,13 @@
 			if ($_POST['email'] == '') {
 				$errors['email']='Hãy nhập email';
 			}
-
 		$password= isset($_POST['password']) ? $_POST['password'] : '';
 			if ($_POST['password'] == '') {
 				$errors['password']='Hãy nhập mật khẩu';
 			}
-
 			if (!$errors) {
 				//Lấy tài khoản theo Email
-			$sql_email=mysqli_query($connection,"SELECT * FROM account WHERE email = '$email' ");
+			$sql_email=mysqli_query($connection,"SELECT * FROM account WHERE email = '$email' AND level = 0 ");
 				if(mysqli_num_rows($sql_email)==1) {
 					$row= mysqli_fetch_assoc($sql_email);
 					$check = password_verify($password,$row['password']);

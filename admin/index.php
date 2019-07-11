@@ -23,10 +23,10 @@
       <div class="box">
         <div class="box-header with-border">
 
-          
         </div>
         <div class="box-body">
-          Start creating your amazing application!
+         
+    </div>
         </div>
         <!-- /.box-body -->
       </div>

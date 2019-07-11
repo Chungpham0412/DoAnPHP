@@ -3,10 +3,10 @@
   ob_start();
   session_start();
   // $admin = isset( $_SESSION['login']) ?  $_SESSION['login'] : 0;
-  if (!isset($_SESSION['login'])) {
+  if (!isset($_SESSION['login_admin'])) {
     header('location: login.php');
   }else{
-    $admin = $_SESSION['login'];
+    $admin = $_SESSION['login_admin'];
   }
   ?>
   <!DOCTYPE html>
@@ -46,7 +46,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $admin['name'] ?><b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Thông tin</a></li>
+            <li><a href="profile.php">Thông tin</a></li>
             <li><a href="logout.php">Thoát tài khoản</a></li>
           </ul>
         </li>
@@ -103,7 +103,7 @@
               </ul>
             </li>
             <li class="">
-              <a href="DS_order.php">
+              <a href="order.php">
                 <i class="fa fa-calendar-check-o"></i> <span>QL Đơn hàng</span>
               </a>
             </li>
@@ -112,14 +112,14 @@
                 <i class="fa fa-user-circle"></i> <span>QL Khách hàng</span>
               </a>
             </li>
-            <li>
+<!--             <li>
               <a href="">
                 <i class="fa fa-th"></i> <span>Tin tức</span>
                 <span class="pull-right-container">
                   <small class="label pull-right bg-green">Hot</small>
                 </span>
               </a>
-            </li>
+            </li> -->
              <li class="treeview">
               <a href="#">
                 <i class="fa fa-address-card-o"></i> <span>QL Admin</span>

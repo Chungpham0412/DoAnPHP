@@ -48,8 +48,7 @@
                 <td><?php echo $acc['address'] ?></td>
                 <td><?php echo $acc['created'] ?></td>
                 <td>
-                  <a href="" class="btn btn-xs btn-primary">Sửa</a>
-                  <a href="" class="btn btn-xs btn-danger">Xóa</a>
+                  <a href="delete_account_admin.php?id=<?php echo $acc['id'] ?>" class="btn btn-xs btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản không?')">Xóa</a>
                 </td>
               </tr>
             <?php } ?>

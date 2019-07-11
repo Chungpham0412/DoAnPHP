@@ -12,7 +12,7 @@ include "config/cart-function.php";
 	<meta name="description" content="Flatize - Shop HTML5 Responsive Template">
 	<meta name="author" content="pixelgeeklab.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Flatize - Shop HTML5 Responsive Template</title>
+	<title>Flatize</title>
 	<!-- Google Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
@@ -87,7 +87,8 @@ include "config/cart-function.php";
 								?>
 									<a href="#"><i class="fa fa-user-circle"></i></a>
 									<ul class="dropdown-menu">
-										<li><a href="profile.php">Hi,<?php echo $c['name'] ?></a></li>
+										<li><a href="profile.php">Hi, <?php echo $c['name'] ?></a></li>
+										<li><a href="history_order.php">Lịch sử đặt hàng</a></li>
 										<li><a href="logout.php">Đăng xuất</a></li>
 									</ul>
 								<?php else : ?>
@@ -132,7 +133,7 @@ include "config/cart-function.php";
 									</li>							
 								</ul>
 							</li>
-							<li><a href="product.php">Blog</a></li>
+							<li><a href="blog.php">Blog</a></li>
 							<li>
 								<a href="cart.php" class="glyphicon glyphicon-shopping-cart">
 									<?php echo tong_so_luong() ?>

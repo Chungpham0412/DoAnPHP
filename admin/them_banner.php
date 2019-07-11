@@ -42,7 +42,8 @@
           <form action="" method="POST" enctype="multipart/form-data">
             <div class="form-group">
               <label for="">Tên Banner</label>
-              <input type="text" name="name" class="form-control" placeholder="Tên sản phẩm.." >
+              <textarea name="name" id="desc" class="form-control" placeholder="Tên sản phẩm.."></textarea>
+              <!-- <input id="content" type="text" name="name" class="form-control" placeholder="Tên sản phẩm.." > -->
             </div>
             <div class="form-group">
               <label for="">Ảnh Banner</label>

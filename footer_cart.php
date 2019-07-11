@@ -30,3 +30,36 @@
 	<script src="public/vendor/daterangepicker/daterangepicker.js"></script>
 	<script src="public/vendor/countdowntime/countdowntime.js"></script>
 	<script src="public/js/main.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var qtt = parseInt( $("#quantityItem").val());
+			$("#cong").click(function(){
+				qtt+=1;
+				$("#quantityItem").val(qtt);
+				
+			})
+			$("#tru").click(function(){
+				if(qtt >0){
+					qtt-=1;
+					$("#quantityItem").val(qtt);
+				}else{
+					qtt= 1;
+					$("#quantityItem").val(qtt);
+				}
+				
+				
+			})
+			
+			
+			
+			$("#addCart").click(function(){
+				var size  =  $("#size").val();
+				var color = $("#color").val();
+				if(color=="" || size==""){
+					alert("ban phai chon size va color");
+					return false;
+				}
+			})
+		})
+	</script>

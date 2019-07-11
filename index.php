@@ -26,7 +26,7 @@ $product_woman = mysqli_query($connection,$nu);
 							<div class="item-caption-inner">
 								<div class="item-caption-wrap">
 									<p class="item-cat"><a href="#"></a></p>
-									<h2>Up to 50% off<br><?php echo $ban['name'] ?></h2>
+									<h2><?php echo $ban['name'] ?></h2>
 									<a href="#" class="btn btn-white hidden-xs">Shop Now</a>
 								</div>
 							</div>
@@ -101,9 +101,9 @@ $product_woman = mysqli_query($connection,$nu);
 												<a href="product_detail.php?id=<?php echo $pro['id']?>" class="view-product">
 													<span><i class="fa fa-external-link"></i></span>
 												</a>
-												<a href="handling_cart.php?id=<?php echo $pro['id']?>" class="add-to-cart-product">
-													<span><i class="fa fa-shopping-cart"></i></span>
-												</a>
+												<!-- <a href="handling_cart.php?id=<?php //echo $pro['id']?>" class="add-to-cart-product"> -->
+													<!-- <span><i class="fa fa-shopping-cart"></i></span>
+												</a> -->
 											</span>
 											<img alt="" class="img-responsive" src="uploads/<?php echo $pro['image'] ?>">
 										</div>
@@ -158,9 +158,9 @@ $product_woman = mysqli_query($connection,$nu);
 														<a href="product_detail.php?id=<?php echo $pro_man['id'] ?>">
 															<span><i class="fa fa-external-link"></i></span>
 														</a>
-														<a href="handling_cart.php?id=<?php echo $pro_man['id']?>" class="add-to-cart-product">
+														<!-- <a href="handling_cart.php?id=<?php //echo $pro_man['id']?>" class="add-to-cart-product">
 															<span><i class="fa fa-shopping-cart"></i></span>
-														</a>
+														</a> -->
 													</span>
 													<img alt="" class="img-responsive" src="uploads/<?php echo $pro_man['image']?>">
 												</div>
@@ -168,12 +168,12 @@ $product_woman = mysqli_query($connection,$nu);
 													<?php if($pro_man['sale_price']==0) :?>
 														<div class="product-thumb-info-content">
 															<span class="price pull-right" style="text-decoration: none"><?php echo number_format($pro_man['price'])." "."đ" ; ?></span>
-															<h4><a href=""><?php echo $pro_man['name'] ?></a></h4>
+															<h4><a href="product_detail.php?id=<?php echo $pro_man['id'] ?>"><?php echo $pro_man['name'] ?></a></h4>
 														</div>
 														<?php elseif ($pro_man['sale_price']>0) :?>
 															<div class="product-thumb-info-content">
 																<span class="price_ pull-right" style="text-decoration: line-through"><?php echo number_format($pro_man['price'])." "."đ" ; ?></span>
-																<h4><a href=""><?php echo $pro_man['name'] ?></a></h4>
+																<h4><a href="product_detail.php?id=<?php echo $pro_man['id'] ?>"><?php echo $pro_man['name'] ?></a></h4>
 																<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo number_format($pro_man['sale_price'])." "."đ" ?></span></span>
 															</div>
 														<?php endif; ?>
@@ -197,9 +197,7 @@ $product_woman = mysqli_query($connection,$nu);
 														<a href="product_detail.php?id=<?php echo $pro_woman['id'] ?>">
 															<span><i class="fa fa-external-link"></i></span>
 														</a>
-														<a href="handling_cart.php?id=<?php echo $pro_woman['id']?>" class="add-to-cart-product">
-															<span><i class="fa fa-shopping-cart"></i></span>
-														</a>
+														
 													</span>
 													<img alt="" class="img-responsive" src="uploads/<?php echo $pro_woman['image'] ?>">
 												</div>
@@ -207,12 +205,12 @@ $product_woman = mysqli_query($connection,$nu);
 													<?php if($pro_woman['sale_price']==0) :?>
 														<div class="product-thumb-info-content" >
 															<span class="price pull-right" style="text-decoration: none"><?php echo number_format($pro_woman['price'])." "."đ" ; ?></span>
-															<h4><a href=""><?php echo $pro_woman['name'] ?></a></h4>
+															<h4><a href="product_detail.php?id=<?php echo $pro_woman['id'] ?>"><?php echo $pro_woman['name'] ?></a></h4>
 														</div>
 														<?php elseif ($pro_woman['sale_price']>0) :?>
 															<div class="product-thumb-info-content">
 																<span class="price_ pull-right" style="text-decoration: line-through"><?php echo number_format($pro_woman['price'])." "."đ" ; ?></span>
-																<h4><a href=""><?php echo $pro_woman['name'] ?></a></h4>
+																<h4><a href="product_detail.php?id=<?php echo $pro_woman['id'] ?>"><?php echo $pro_woman['name'] ?></a></h4>
 																<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo number_format($pro_woman['sale_price'])." "."đ" ?></span></span>
 															</div>
 														<?php endif; ?>

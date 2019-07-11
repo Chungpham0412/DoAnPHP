@@ -68,7 +68,7 @@
                 <td><?php echo $cat['created'] ?></td>
                 <td>
                   <a href="edit_category.php?id=<?php echo $cat['id'] ?>" class="btn btn-xs btn-success">Sửa</a>
-                  <a href="delete_category.php?id=<?php echo $cat['id'] ?>" onclick="return confirm('Dung Mặt Lợn Ăn Cứt Không')" class="btn btn-xs btn-info">Xóa</a>
+                  <a href="delete_category.php?id=<?php echo $cat['id'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-xs btn-info">Xóa</a>
                 </td>
               </tr>
             <?php } ?>

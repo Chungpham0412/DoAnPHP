@@ -12,7 +12,7 @@
      if (mysqli_num_rows($check_email)==1) {
          $admin = mysqli_fetch_assoc($check_email);
          if (password_verify($password, $admin['password'])) {
-             $_SESSION['login']=$admin;
+             $_SESSION['login_admin']=$admin;
              header('location: index.php');
          }else{
             // echo "Mật khẩu không đúng";

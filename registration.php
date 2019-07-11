@@ -40,7 +40,7 @@
 						if (!$errors) {
 							$passHash = password_hash("$password", PASSWORD_BCRYPT);
 
-							$sql="INSERT INTO `account`(`name`,`email`,`phone`,`password`,`address`,`level`) VALUES('$name','$email','$phone','$passHash','$address','Khách hàng')";
+							$sql="INSERT INTO `account`(`name`,`email`,`phone`,`password`,`address`,`level`) VALUES('$name','$email','$phone','$passHash','$address',0)";
 							if (mysqli_query($connection,$sql)) {
 								header('location: index.php');
 							}else{

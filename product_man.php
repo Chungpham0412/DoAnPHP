@@ -30,24 +30,24 @@ $product_man = mysqli_query($connection,"SELECT product.id, product.name,product
 									<div class="product-thumb-info">
 										<div class="product-thumb-info-image">
 											<span class="product-thumb-info-act">
-												<a class="view-product">
+												<a href="product_detail.php?id=<?php echo $p['id']?>" class="view-product">
 													<span><i class="fa fa-external-link"></i></span>
 												</a>
-												<a href="handling_cart.php?id=<?php echo $p['id']?>" class="add-to-cart-product">
+												<!-- <a href="handling_cart.php?id=<?php //echo $p['id']?>" class="add-to-cart-product">
 													<span><i class="fa fa-shopping-cart"></i></span>
-												</a>
+												</a> -->
 											</span>
 											<img alt="" class="img-responsive" src="uploads/<?php echo $p['image'] ?>">
 										</div>
 										<?php if($p['sale_price']==0) :?>
 										<div class="product-thumb-info-content" style="height: 30px">
 											<span class="price pull-right" style="text-decoration: none"><?php echo $p['price']." "."VNĐ" ; ?></span>
-											<h4><a href=""><?php echo $p['name'] ?></a></h4>
+											<h4><a href="product_detail.php?id=<?php echo $p['id']?>"><?php echo $p['name'] ?></a></h4>
 										</div>
 										<?php elseif ($p['sale_price']>0) :?>
 										<div class="product-thumb-info-content" style="height: 30px">
 											<span class="price_ pull-right" style="text-decoration: line-through"><?php echo $p['price']." "."VNĐ" ; ?></span>
-											<h4><a href=""><?php echo $p['name'] ?></a></h4>
+											<h4><a href="product_detail.php?id=<?php echo $p['id']?>"><?php echo $p['name'] ?></a></h4>
 											<span class="item-cat"><small><a href="#">Giá khuyến mãi </a> </small> <span class="price pull-right"><?php echo $p['sale_price']." "."VNĐ" ?></span></span>
 										</div>
 										

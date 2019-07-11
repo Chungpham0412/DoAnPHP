@@ -38,9 +38,9 @@
 
 				$sql="INSERT INTO `account`(`name`,`email`,`phone`,`password`,`address`,`level`) VALUES('$name','$email','$phone','$passHash','$address',1)";
 				if (mysqli_query($connection,$sql)) {
-					header('location: index.php');
+					header('location: DS_Account_admin.php');
 				}else{
-					echo "Thaatj baij";
+					echo "Tạo tài khoản thất bại";
 				}
 			}
 		}

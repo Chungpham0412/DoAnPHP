@@ -10,7 +10,6 @@
 		<div class="panel-body">
 			<?php if (isset($_SESSION['login'])) :
 				$od=$_SESSION['login'];
-
 				if (isset($_POST['btn-orders'])) {
 					//1 Lưu vào bảng orders để lấy account_id
 					$account_id=$od['id'];
@@ -22,21 +21,28 @@
 					if ($qrod) {
 						$orders_id = mysqli_insert_id($connection);
 					//2 Duyệt giỏ hàng và lưu thông tin tên sản phẩm trong giỏ hàng vào bẳng order_detail
+						$a = "";
 						foreach ($carts as $c) {
 							$product_id = $c['id'];
 							$quantity= $c['quantity'];
-							$price = $c['price'];
-
-							mysqli_query($connection,"INSERT INTO order_detail VALUES ($orders_id,$product_id,$quantity,$price)");
+							$price = $c['tatolPrice'];
+							$color = $c['colorBuy'];
+							$size = $c['sizeBuy'];
+							$a = mysqli_query($connection,"INSERT INTO `order_detail` (`order_id`, `product_id`, `quantity`, `price`, `color`, `size`) VALUES ('$orders_id', '$product_id', '$quantity', '$price', '$color', '$size')");
 						}
+							if($a){
+								echo "Chúc mừng bạn đã bị lừa";
+
+							}else{
+								echo "Đặt hàng không thành công. Xin vui lòng thử lại!";
+							}
+
 						//Sẽ thực hiện gửi mail
-
-
 						//Chuyển hướng về trang cảm ơn ♥
-						header('location: index.php');
+
+						// header('location: index.php');
 						unset($_SESSION['cart']);
 					}
-
 				}
 			?>
 			<?php if (tong_so_luong()>0) :?>
@@ -84,10 +90,8 @@
 					<strong>Lỗi</strong> Bạn chưa đăng nhập!
 				</div>
 				<a type="button" href="login.php"  class="btn btn-lg btn-success">Đăng nhập ngay</a>
-
 			<?php endif; ?>
 		</div>
 	</div>
-	
 </div>
 <?php include "footer_cart.php" ?>

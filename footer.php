@@ -85,12 +85,12 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<p class="clearfix"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button></p>
-				<form class="form-inline form-search" role="form" method="get" action="search.php">
+				<form class="form-inline form-search" role="form" method="post" action="search.php">
 					<div class="form-group">
 						<label class="sr-only"  for="textsearch">Enter text search</label>
 						<input type="text" name="product_search" class="form-control input-lg" id="textsearch" placeholder="Enter text search" style="background: white">
 					</div>
-					<button type="submit" class="btn btn-white" style="color: black">Search</button>
+					<button type="submit" class="btn btn-white" style="color: black" name = "btnSearch">Search</button>
 				</form>
 					<!-- <form action="search.php" method="GET" role="form">
 									<input type="text" name="product_search" class="form-control" id="" placeholder="Input field">
@@ -139,5 +139,36 @@
 	<script src="public/vendor/daterangepicker/daterangepicker.js"></script>
 	<script src="public/vendor/countdowntime/countdowntime.js"></script>
 	<script src="public/js/main.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var qtt = parseInt( $("#quantityItem").val());
+			$("#cong").click(function(){
+				qtt+=1;
+				$("#quantityItem").val(qtt);
+
+			})
+			$("#tru").click(function(){
+				if(qtt >0){
+					qtt-=1;
+					$("#quantityItem").val(qtt);
+				}else{
+					qtt= 1;
+					$("#quantityItem").val(qtt);
+				}
+
+
+			})
+
+			$("#addCart").click(function(){
+				var size  =  $("#size").val();
+				var color = $("#color").val();
+				if(color=="" || size==""){
+					alert("Bạn phải chọn Size và Color");
+					return false;
+				}
+			})
+		})
+	</script>
 </body>
 </html>

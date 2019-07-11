@@ -54,7 +54,7 @@
                 <td><?php echo $ban['created'] ?></td>
                 <td>
                   <a href="edit_Banner.php?id=<?php echo $ban['id'] ?>" class="btn btn-xs btn-primary">Sửa</a>
-                  <a href="delete_banner.php?id=<?php echo $ban['id'] ?>" class="btn btn-xs btn-danger">Xóa</a>
+                  <a href="delete_banner.php?id=<?php echo $ban['id'] ?>" class="btn btn-xs btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">Xóa</a>
                 </td>
               </tr>
             <?php } ?>

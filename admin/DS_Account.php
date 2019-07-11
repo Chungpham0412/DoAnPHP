@@ -35,7 +35,6 @@
                 <th>Số điện thoại</th>
                 <th>Địa chỉ</th>
                 <th>Ngày tạo</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -47,10 +46,6 @@
                 <td><?php echo $acc['phone'] ?></td>
                 <td><?php echo $acc['address'] ?></td>
                 <td><?php echo $acc['created'] ?></td>
-                <td>
-                  <a href="" class="btn btn-xs btn-primary">Sửa</a>
-                  <a href="" class="btn btn-xs btn-danger">Xóa</a>
-                </td>
               </tr>
             <?php } ?>
             </tbody>

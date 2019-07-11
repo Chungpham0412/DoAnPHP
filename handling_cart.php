@@ -1,18 +1,23 @@
  <?php 
-
 	session_start();
-
+	// session_destroy()
 	require 'config/connect.php';
 
 	$id = isset($_GET['id']) ? $_GET['id'] : 0;
+
 	$action = isset($_GET['action']) ? $_GET['action'] : 'add';
+	$sizeBuy = isset($_GET['sizeBuy']) ? $_GET['sizeBuy'] : '';
+	$colorBuy = isset($_GET['colorBuy']) ? $_GET['colorBuy'] : '';
+
 	$quantity = isset($_GET['quantity']) ? $_GET['quantity'] : 1;
+
 	$quantity = $quantity > 0 ? $quantity : 1;
 
 	$qr = mysqli_query($connection, "SELECT * FROM product WHERE id = $id");
-
+	
 	$row= mysqli_fetch_assoc($qr);
 	
+	$price=$row['sale_price'] ? $row['sale_price'] : $row['price'];
 	if ($row && $action == 'add') {
 		if (isset($_SESSION['cart'][$id])) {
 			$_SESSION['cart'][$id]['quantity'] += 1;
@@ -21,12 +26,15 @@
 				'id' => $row['id'],
 				'name' => $row['name'],
 				'image' => $row['image'],
-				'price' => $row['sale_price'] ? $row['sale_price'] : $row['price'],
-				'quantity' => 1
+				'price' => $price,
+				'quantity' => $quantity,
+				'sizeBuy' => $sizeBuy,
+				'colorBuy' => $colorBuy,
+				'tatolPrice' => $price*$quantity,
 			];	
 		}
-
 	}
+	// print_r($_SESSION['cart']);
 	if ($action == 'update') {
 		if (isset($_SESSION['cart'][$id])) {
 			$_SESSION['cart'][$id]['quantity'] = $quantity;
@@ -37,6 +45,7 @@
 		unset($_SESSION['cart']);
 		}
 	}
-	// print_r($_SESSION['cart']);
+	echo '<pre>';
+	print_r($_SESSION['cart']);
 	header('location: cart.php');
 ?>

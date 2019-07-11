@@ -14,6 +14,8 @@
 						<th>STT</th>
 						<th>Tên sản phẩm</th>
 						<th>Hành ảnh</th>
+						<th>Màu sắc</th>
+						<th>Kích thước</th>
 						<th>Giá</th>
 						<th>Số lượng</th>
 						<th>Thành tiền</th>
@@ -28,12 +30,14 @@
 						<td>
 							<img src="uploads/<?php echo $c['image']?>" width="50px">
 						</td>
+						<td><?php echo $c['colorBuy'] ?></td>
+						<td><?php echo $c['sizeBuy'] ?></td>
 						<td><?php echo number_format( $c['price']).'đ' ?></td>
 						<td>
 							<form action="handling_cart.php" method="GET">
 								<input name="id" type="hidden" value="<?php echo $c['id'] ?>">
 								<input name="action" type="hidden" value="update">
-								<input name="quantity" value="<?php echo $c['quantity']?>">
+								<input name="quantity" class="input-text qty" value="<?php echo $c['quantity']?>">
 								<input type="submit" name="" value="cập nhập">
 							</form>
 						</td>
@@ -45,7 +49,9 @@
 				<?php $n++; endforeach; endif;?>
 				</tbody>
 				<tr>
-					<td>Tổng cộng</td>
+					<td><b>Tổng cộng</b></td>
+					<td></td>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>

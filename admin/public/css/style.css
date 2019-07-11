@@ -6,7 +6,7 @@
 }
 .box-tools .breadcrumb li{
 	margin-right: 15px;
-	float: left
+	/* float: left */
 }
 .box-tools .breadcrumb li a{
 	color: #333
