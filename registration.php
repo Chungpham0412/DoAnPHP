@@ -1,4 +1,5 @@
 <?php include "header.php";?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div class="container-login100" style="background-image: url('public/images/bg-01.jpg');  ">
 	<div class="modal-dialog" >
 		<div class="modal-body">
@@ -15,11 +16,15 @@
 						$email= isset($_POST['email']) ? $_POST['email'] : '';
 						if ($_POST['email'] == '') {
 							$errors['email']='Hãy nhập email';
+						}else if (!preg_match("/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ ",$_POST['email'])){
+							$errors['email'] ='Email chưa đúng định dạng';
 						}
 
 						$phone= isset($_POST['phone']) ? $_POST['phone'] : '';
 						if ($_POST['phone'] == '') {
 							$errors['phone']='Hãy nhập số diện thoại';
+						}else if(!preg_match("/^[0-9]{10}$/ ",$_POST['phone'])){
+							$errors['phone']='Số điện thoại không đúng định dạng';
 						}
 
 						$password= isset($_POST['password']) ? $_POST['password'] : '';
@@ -67,12 +72,14 @@
 
 			<div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
 				<span class="label-input100">Email</span>
-				<input class="input100" type="text" name="email" placeholder="Type your Email">
-				<?php if (isset($errors['email'])) {?>
-					<div class="help-block" style="color: red">
+				<input class="input100" id="email" type="text" name="email" placeholder="Type your Email">
+				<?php if (isset($errors['email'])){ ?>
+					<div id="result" class="help-block" style="color: red">
 						<?php echo $errors['email'] ?>
 					</div>
 				<?php } ?>
+					
+				
 				<span class="focus-input100" data-symbol="&#xf190;"></span>
 			</div>
 			<div class="wrap-input100 validate-input m-b-23" data-validate="Phone is required">
@@ -125,7 +132,7 @@
 			<div class="container-login100-form-btn">
 				<div class="wrap-login100-form-btn">
 					<div class="login100-form-bgbtn"></div>
-					<button class="login100-form-btn" type="submit" name="register">
+					<button class="login100-form-btn" type="submit" id="validate" name="register">
 						Login
 					</button>
 				</div>
@@ -164,3 +171,27 @@
 		</div>
 	</div>
 </div>
+<script >
+
+// function validateEmail(email) {
+//   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//   return re.test(email);
+// }
+
+// function validate() {
+//   var $result = $("#result");
+//   var email = $("#email").val();
+//   $result.text("");
+
+//   if (validateEmail(email)) {
+//     $result.text(email + " is valid :)");
+//     $result.css("color", "green");
+//   } else {
+//     $result.text(email + " is not valid :(");
+//     $result.css("color", "red");
+//   }
+//   return false;
+// }
+
+// $("#validate").on("click", validate);
+</script>

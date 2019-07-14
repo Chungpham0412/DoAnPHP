@@ -2,7 +2,7 @@
   include "../config/connect.php";
   ob_start();
   session_start();
-  // $admin = isset( $_SESSION['login']) ?  $_SESSION['login'] : 0;
+  $admin = isset( $_SESSION['login']) ?  $_SESSION['login'] : 0;
   if (!isset($_SESSION['login_admin'])) {
     header('location: login.php');
   }else{
