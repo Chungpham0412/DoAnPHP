@@ -15,26 +15,24 @@
       <div class="box">
         <div class="box-body">
           <?php 
-         
-          //laays id cua banner
           $id = isset($_GET['id']) ? $_GET['id'] : 0;
           $query = mysqli_query($connection,"SELECT * FROM banner WHERE id = $id");
           $bann=mysqli_fetch_assoc($query);
-           $image = $bann['image'];
+          $image = $bann['image'];
           if (!empty($_FILES['image']['name'])) {
           $f = $_FILES['image'];
           $f_name = time(). '-' .$f['name'];
-
           if (move_uploaded_file($f['tmp_name'], '../uploads/'.$f_name)) {
           $image = $f_name;
+          // laays id cua banner
+           }
+         }
 
-           if (isset($_POST['submit'])) {
+          if (isset($_POST['btn'])) {
               $name = $_POST['name'];
               $ordering = $_POST['ordering'];
               $status = $_POST['status'];
               // $image = $image;
-
-             
              $sql_2 = " UPDATE `banner` SET `name` = '$name', `image` = '$image', `ordering` = '$ordering', `status` = '$status' WHERE `id` = $id" ;
 
              if (mysqli_query($connection,$sql_2)) {
@@ -43,14 +41,15 @@
                 echo "Lỗi Thêm mới";
               }
             }
-          }
-        }
+          
+        
         ?>
 
           <form action="" method="POST" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-6">
                  <div class="form-group">
+                   <?php if($bann): ?>
                   <label for="">Tên Banner</label>
                   <input type="text" name="name" class="form-control" placeholder="Tên Banner.." value="<?php echo $bann['name'] ?>">
                 </div>
@@ -60,13 +59,16 @@
               </div>
               <div class="form-group">
                   <label for="">Trạng thái</label>
+
                   <div class="radio">
+                   
                     <label>
-                      <input type="radio" name="status" value="1" <?php if($bann['status']==1) echo "checked"; ?>>Hiện
+                      <input type="radio" name="status" value="1" <?php if( $bann['status']==1) echo "checked"; ?>>Hiện
                     </label> 
                     <label>
-                      <input type="radio" name="status" value="0" <?php if($bann['status']==0) echo "checked"; ?>>Ẩn
+                      <input type="radio" name="status" value="0" <?php if(  $bann['status']==0) echo "checked"; ?>>Ẩn
                     </label>
+                  <?php endif; ?>
                   </div>
               </div>
               </div>
@@ -79,7 +81,7 @@
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary" name="submit">Cập nhập</button>
+            <button type="submit" class="btn btn-primary" name="btn">Cập nhập</button>
           </form>
         </div>
         <!-- /.box-body -->

@@ -5,8 +5,8 @@
    $sql = mysqli_query($connection,"SELECT * FROM product WHERE id=$id");
    $pro = mysqli_fetch_assoc($sql);
    $img_else = mysqli_query($connection,"SELECT * FROM product_image WHERE product_id = $id");
-$color = mysqli_query($connection,"SELECT * FROM attribute WHERE type='color'");
-$size = mysqli_query($connection,"SELECT * FROM attribute WHERE type='size'");
+  $color = mysqli_query($connection,"SELECT attribute_id , name FROM `product_attribute` JOIN `attribute`ON attribute_id = id AND product_id=$id AND type = 'color' " );
+  $size = mysqli_query($connection,"SELECT attribute_id , name FROM `product_attribute` JOIN `attribute`ON attribute_id = id AND product_id=$id AND type = 'size'");
   ?>
 
   <div class="content-wrapper">

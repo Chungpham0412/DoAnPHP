@@ -1,5 +1,5 @@
 <?php 
-  $connection = mysqli_connect('localhost','root','','qlbh');
+  include "../config/connect.php";
 
   //Lấy giá reij theo id
   $id=$_GET['id'];

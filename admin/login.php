@@ -87,23 +87,16 @@
                             </div>
                         <?php } ?>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="custom-control custom-checkbox">
                             <input class="custom-control-input" type="checkbox" name="remember" ><span class="custom-control-label" value="1">Ghi nhớ đăng nhập</span>
                         </label>
-                    </div>
+                    </div> -->
                     <button type="submit" name="login_btn" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
                 </form>
             </div>
-            <div class="card-footer bg-white p-0  ">
-                <div class="card-footer-item card-footer-item-bordered">
-                    <a href="#" class="footer-link">Tạo tài khoản</a></div>
-                    <div class="card-footer-item card-footer-item-bordered">
-                        <a href="#" class="footer-link">Quên mật khẩu</a>
-                    </div>
-                </div>
-            </div>
         </div>
+    </div>
 
         <!-- ============================================================== -->
         <!-- end login page  -->

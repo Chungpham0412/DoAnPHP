@@ -60,7 +60,7 @@
     </div>
         </div>
         <!-- /.box-body -->
-      </div>
+
       <!-- /.box -->
 
     </section>

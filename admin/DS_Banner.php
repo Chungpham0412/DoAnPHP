@@ -1,8 +1,16 @@
   <?php
   include "header_admin.php";
 
- $banner=mysqli_query($connection,"SELECT * FROM banner")
- 
+ $banner=mysqli_query($connection,"SELECT * FROM banner");
+ if(isset($_POST["SubmitSearch"])){
+    $search = $_POST["search"];
+    $sqli_1 = mysqli_query($connection,"SELECT * FROM banner WHERE name LIKE '%$search%'");
+    if($sqli_1){
+      $banner = $sqli_1;
+    }else{
+      echo "Lỗi tìm kiếm. Vui lòng thử lại ";
+    }
+  }
   ?>
   
   <div class="content-wrapper">
@@ -19,7 +27,7 @@
         <div class="box-header with-border">
           <form action="" method="POST" class="form-inline" role="form" >
             <div class="form-group">
-              <input type="text" class="form-control" id="" placeholder="Input field" name="search">
+              <input type="text" class="form-control" id="" placeholder="Tìm kiếm" name="search">
             </div>
             <button type="submit" class="btn btn-primary " name ="SubmitSearch"><i class="fa fa-search"></i></button>
             <a href="them_banner.php" class="btn btn-success">Thêm mới</a>

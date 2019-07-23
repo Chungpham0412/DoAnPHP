@@ -1,7 +1,16 @@
   <?php
   include "header_admin.php";
 
- $account=mysqli_query($connection,"SELECT * FROM account WHERE level = 1" )
+ $accounts=mysqli_query($connection,"SELECT * FROM account WHERE level = 1" );
+   if(isset($_POST["SubmitSearch"])){
+    $search = $_POST["search"];
+    $sqli_1 = mysqli_query($connection,"SELECT * FROM account WHERE level = 1 AND name LIKE '%$search%'");
+    if($sqli_1){
+      $accounts = $sqli_1;
+    }else{
+      echo "Lỗi tìm kiếm. Vui lòng thử lại ";
+    }
+  }
  
   ?>
   
@@ -19,7 +28,7 @@
         <div class="box-header with-border">
           <form action="" method="POST" class="form-inline" role="form">
             <div class="form-group">
-              <input type="text" class="form-control" id="" placeholder="Input field" name="search">
+              <input type="text" class="form-control" id="" placeholder="Tìm kiếm" name="search">
             </div>
             <button type="submit" class="btn btn-primary " name ="SubmitSearch"><i class="fa fa-search"></i></button>
             <!-- <a href="" class="btn btn-success">Thêm mới</a> -->
@@ -39,7 +48,7 @@
               </tr>
             </thead>
             <tbody>
-            <?php foreach($account as $acc) { ?>
+            <?php foreach($accounts as $acc) { ?>
               <tr>
                 <td><?php echo $acc['id'] ?></td>
                 <td><?php echo $acc['name'] ?></td>

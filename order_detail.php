@@ -1,7 +1,9 @@
-<?php include "header.php";?>
+<?php include "header.php";
+
+?>
 <br>
 <div class="container">
-	<div class="panel panel-danger">
+	<div class="panel panel-danger" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 		<div class="panel-heading">
 			<h3 class="panel-title">Chi tiết đơn hàng</h3>
 		</div>
@@ -22,8 +24,7 @@
 				<tbody>
 					<?php 
 						$id = isset($_GET['id']) ? $_GET['id'] : 0;
-						$sqlJoin = "SELECT dt.price,dt.quantity,dt.color,dt.size,p.name,p.image FROM order_detail dt JOIN product p ON dt.product_id = p.id WHERE order_id = $id";
-
+						$sqlJoin = "SELECT dt.quantity,dt.color,dt.size,p.name,p.image,p.price FROM order_detail dt JOIN product p ON dt.product_id = p.id WHERE order_id = $id";
 						$order_detail = mysqli_query($connection,$sqlJoin);
 					?>
 					<?php $n=1; if($order_detail) : foreach ($order_detail as $c ) :?>
@@ -35,10 +36,10 @@
 						</td>
 						<td><?php echo $c['color'] ?></td>
 						<td><?php echo $c['size'] ?></td>
-						<td><?php echo number_format( $c['price']).'đ' ?></td>
 						<td>
 							<?php echo $c['quantity'] ?>
 						</td>
+						<td><?php echo number_format( $c['price']).'đ' ?></td>
 						<td><?php echo number_format( $c['price']*$c['quantity']) ?>đ</td>
 
 					</tr>

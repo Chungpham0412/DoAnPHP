@@ -14,7 +14,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Blank Page</title>
+    <title>Admin | Flatize Shop</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -72,34 +72,44 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="them_product.php"><i class="fa fa-circle-o"></i> Thêm mới SP</a></li>
-                <li><a href="add_attribute.php"><i class="fa fa-circle-o"></i> Thêm mới thuộc tính</a></li>
-                <li><a href="DS_Product.php"><i class="fa fa-circle-o"></i> Danh sách SP</a></li>
-                <li><a href="DS_attribute.php"><i class="fa fa-circle-o"></i> Danh sách thuộc tính</a></li>
+                <li><a href="them_product.php"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+                <li><a href="DS_Product.php"><i class="fa fa-circle-o"></i> Danh sách</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-home"></i> <span>QL Danh mục</span>
+                <i class="glyphicon glyphicon-tags"></i> <span>QL thuộc tính</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="them_category.php"><i class="fa fa-circle-o"></i>Thêm mới danh mục</a></li>
+                <li><a href="add_attribute.php"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+                <li><a href="DS_attribute.php"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="glyphicon glyphicon-folder-open"></i> <span>QL Danh mục</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="them_category.php"><i class="fa fa-circle-o"></i>Thêm mới </a></li>
                 <li><a href="DS_category.php"><i class="fa fa-circle-o"></i> Danh mục </a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-home"></i> <span>QL banner</span>
+                <i class="glyphicon glyphicon-picture"></i> <span>QL banner</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="them_banner.php"><i class="fa fa-circle-o"></i>Thêm mới banner</a></li>
-                <li><a href="DS_Banner.php"><i class="fa fa-circle-o"></i>Danh sách Banner</a></li>
+                <li><a href="them_banner.php"><i class="fa fa-circle-o"></i>Thêm mới</a></li>
+                <li><a href="DS_Banner.php"><i class="fa fa-circle-o"></i>Danh sách</a></li>
               </ul>
             </li>
             <li class="">
@@ -128,8 +138,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="registration.php"><i class="fa fa-circle-o"></i>Thêm mới Admin</a></li>
-                <li><a href="DS_Account_admin.php"><i class="fa fa-circle-o"></i>Danh sách Admin</a></li>
+                <li><a href="registration.php"><i class="fa fa-circle-o"></i>Thêm mới</a></li>
+                <li><a href="DS_Account_admin.php"><i class="fa fa-circle-o"></i>Danh sách</a></li>
               </ul>
             </li>
            <!--  <li class="">

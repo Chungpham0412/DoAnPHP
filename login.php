@@ -2,14 +2,14 @@
 
 	<?php 
 	$errors = [];
+	$email = '';			
 	if (isset($_POST['login'])) {
-						
 		$email= isset($_POST['email']) ? $_POST['email'] : '';
-			if ($_POST['email'] == '') {
+			if ($email == '') {
 				$errors['email']='Hãy nhập email';
 			}
 		$password= isset($_POST['password']) ? $_POST['password'] : '';
-			if ($_POST['password'] == '') {
+			if ($password == '') {
 				$errors['password']='Hãy nhập mật khẩu';
 			}
 			if (!$errors) {
@@ -43,7 +43,7 @@
 
 			<div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
 				<span class="label-input100">Email</span>
-				<input class="input100" type="text" name="email" placeholder="Type your Email">
+				<input class="input100" type="text" name="email" placeholder="Type your Email" value="<?php echo $email ?>">
 				<?php if (isset($errors['email'])) {?>
 					<div class="help-block" style="color: red">
 						<?php echo $errors['email'] ?>
@@ -86,26 +86,6 @@
 							login
 						</button>
 					</div>
-				</div>
-	
-				<div class="txt1 text-center p-t-54 p-b-20">
-					<span>
-						Or Sign Up Using
-					</span>
-				</div>
-	
-				<div class="flex-c-m">
-					<a href="#" class="login100-social-item bg1">
-						<i class="fa fa-facebook"></i>
-					</a>
-	
-					<a href="#" class="login100-social-item bg2">
-						<i class="fa fa-twitter"></i>
-					</a>
-	
-					<a href="#" class="login100-social-item bg3">
-						<i class="fa fa-google"></i>
-					</a>
 				</div>
 	
 				<div class="flex-col-c p-t-155">

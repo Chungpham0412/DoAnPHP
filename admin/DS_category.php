@@ -26,7 +26,7 @@
         <div class="box-header with-border">
           <form action="" method="POST" class="form-inline" role="form">
             <div class="form-group">
-              <input type="text" class="form-control" id="" placeholder="Input field" name="search">
+              <input type="text" class="form-control" id="" placeholder="Tìm kiếm" name="search">
             </div>
             <button type="submit" class="btn btn-primary" name="SubmitSearch" ><i class="fa fa-search"></i></button>
             <a href="them_category.php" class="btn btn-success">Thêm mới</a>
@@ -55,7 +55,7 @@
                     <?php elseif($cat['parent_id']==2): ?>
                     <span>Thời trang nữ</span>
                     <?php else: ?>
-                      <span>Chungđz Admin</span>
+                      <span>Flatize Shop</span>
                     <?php endif; ?>
                 </td>
                 <td><?php if($cat['status']==1): ?>
@@ -67,8 +67,8 @@
                 <td><?php echo $cat['ordering'] ?></td>
                 <td><?php echo $cat['created'] ?></td>
                 <td>
-                  <a href="edit_category.php?id=<?php echo $cat['id'] ?>" class="btn btn-xs btn-success">Sửa</a>
-                  <a href="delete_category.php?id=<?php echo $cat['id'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-xs btn-info">Xóa</a>
+                  <a href="edit_category.php?id=<?php echo $cat['id'] ?>" class="btn btn-xs btn-primary">Sửa</a>
+                  <a href="delete_category.php?id=<?php echo $cat['id'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-xs btn-danger">Xóa</a>
                 </td>
               </tr>
             <?php } ?>

@@ -42,7 +42,7 @@
           <form action="" method="POST" enctype="multipart/form-data">
             <div class="form-group">
               <label for="">Tên Banner</label>
-              <textarea name="name" id="desc" class="form-control" placeholder="Tên sản phẩm.."></textarea>
+              <textarea name="name" id="desc" class="form-control" placeholder="Tên Banner"></textarea>
               <!-- <input id="content" type="text" name="name" class="form-control" placeholder="Tên sản phẩm.." > -->
             </div>
             <div class="form-group">
@@ -53,7 +53,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                 <label for="">Thứ tự</label>
-                <input type="text" name="ordering" class="form-control" id="" placeholder="Giá khuyến mãi..">
+                <input type="text" name="ordering" class="form-control" id="" placeholder="Thứ tự sắp xếp">
                 </div>
               </div>
               <div class="col-md-6">

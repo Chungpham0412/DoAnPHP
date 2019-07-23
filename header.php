@@ -2,6 +2,11 @@
 session_start();
 ob_start();
 include "config/cart-function.php";
+include "config/function_sent_mail.php";
+// include '../Mailler/PHPMailerAutoload.php'
+ $man = mysqli_query($connection, "SELECT * FROM category WHERE parent_id = 1 AND status = 1");
+ $woman = mysqli_query($connection, "SELECT * FROM category WHERE parent_id = 2 AND status = 1");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +82,7 @@ include "config/cart-function.php";
 					<!-- Tìm kiếm -->
 						
 				</div>
-					<div class="navbar-collapse collapse">
+					<div class="navbar-collapse collapse" >
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
 								
@@ -108,27 +113,17 @@ include "config/cart-function.php";
 									<li class="dropdown-submenu">
 										<a href="product_man.php">Thời trang nam</a>
 										<ul class="dropdown-menu">
-											<li><a href="shop-full-width.html">Shop - Full Width</a></li>
-											<li><a href="shop-sidebar.html">Shop - Sidebar</a></li>
-											<li><a href="shop-list-sidebar.html">Shop List - Sidebar</a></li>
-											<li><a href="shop-product-detail1.html">Shop - Product Detail 1</a></li>
-											<li><a href="shop-product-detail2.html">Shop - Product Detail 2</a></li>
-											<li><a href="shop-cart-full.html">Shop - Cart Full</a></li>
-											<li><a href="shop-cart-sidebar.html">Shop - Cart Sidebar</a></li>
-											<li><a href="shop-checkout.html">Shop - Checkout</a></li>
+											<?php foreach ($man as $cat) {?>
+										<li><a href="category.php?id=<?php echo $cat['id'] ?>"><?php echo $cat['name'] ?></a></li>
+											<?php } ?>
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
 										<a href="product_woman.php">Thời trang nữ</a>
 										<ul class="dropdown-menu">
-											<li><a href="shop-full-width.html">Shop - Full Width</a></li>
-											<li><a href="shop-sidebar.html">Shop - Sidebar</a></li>
-											<li><a href="shop-list-sidebar.html">Shop List - Sidebar</a></li>
-											<li><a href="shop-product-detail1.html">Shop - Product Detail 1</a></li>
-											<li><a href="shop-product-detail2.html">Shop - Product Detail 2</a></li>
-											<li><a href="shop-cart-full.html">Shop - Cart Full</a></li>
-											<li><a href="shop-cart-sidebar.html">Shop - Cart Sidebar</a></li>
-											<li><a href="shop-checkout.html">Shop - Checkout</a></li>
+											<?php foreach ($woman as $cat) {?>
+										<li><a href="category.php?id=<?php echo $cat['id'] ?>"><?php echo $cat['name'] ?></a></li>
+											<?php } ?>
 										</ul>
 									</li>							
 								</ul>

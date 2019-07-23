@@ -1,8 +1,14 @@
  <?php 
 	session_start();
-	// session_destroy()
-	require 'config/connect.php';
+	session_destroy();
+	include 'config/connect.php';
 
+	$_SESSION['cart'][0,1] = [
+				'id' => 1,
+				'name' => 'ádsad'
+			];
+
+	var_dump($_SESSION['cart']); die();
 	$id = isset($_GET['id']) ? $_GET['id'] : 0;
 
 	$action = isset($_GET['action']) ? $_GET['action'] : 'add';
@@ -16,10 +22,14 @@
 	$qr = mysqli_query($connection, "SELECT * FROM product WHERE id = $id");
 	
 	$row= mysqli_fetch_assoc($qr);
-	
-	$price=$row['sale_price'] ? $row['sale_price'] : $row['price'];
+	$price = $row['sale_price'] ? $row['sale_price'] : $row['price'];
+	echo "<pre>";
+	// $key = [$id][$sizeBuy][$colorBuy];
+	// var_dump($_SESSION['cart'][$key]);
+	// die();
+	echo "</pre>";
 	if ($row && $action == 'add') {
-		if (isset($_SESSION['cart'][$id])) {
+		if (isset($_SESSION['cart'][$id]['sizeBuy'])) {
 			$_SESSION['cart'][$id]['quantity'] += 1;
 		}else{
 			$_SESSION['cart'][$id]=[
@@ -34,7 +44,8 @@
 			];	
 		}
 	}
-	// print_r($_SESSION['cart']);
+	// echo "<pre>";
+	// print_r($_SESSION['cart'][50]['sizeBuy']); die();
 	if ($action == 'update') {
 		if (isset($_SESSION['cart'][$id])) {
 			$_SESSION['cart'][$id]['quantity'] = $quantity;

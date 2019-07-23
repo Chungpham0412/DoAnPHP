@@ -1,5 +1,5 @@
 <?php 
-  $connection = mysqli_connect('localhost','root','','qlbh');
+  include "../config/connect.php";
 
   //Lấy giá reij theo id
   $id=$_GET['id'];
@@ -12,7 +12,7 @@
   	 header('location:DS_Banner.php');
 
   	}else{
-  		echo "fail r nhe";
+  		echo "Xóa banner không thành công vui lòng thử lại.";
   	}
  
 ?>

@@ -8,7 +8,6 @@
     if($sqli){
       $product = $sqli;
     }else{
-
       echo "Thử lại ";
     }
   }

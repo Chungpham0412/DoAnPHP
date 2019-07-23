@@ -37,7 +37,7 @@
           <form action="" method="POST">
             <div class="form-group">
               <label for="">Tên danh mục</label>
-              <input type="text" name="name" class="form-control" placeholder="Tên sản phẩm.." >
+              <input type="text" name="name" class="form-control" placeholder="Tên danh mục" >
             </div>
             <div class="form-group">
               <label for="">Danh mục cha</label>
@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
               <label for="">Thứ tự sắp xếp</label>
-              <input type="text" name="ordering" class="form-control" placeholder="Tên sản phẩm.." >
+              <input type="text" name="ordering" class="form-control" placeholder="Thứ tự sắp xếp" >
             </div>
             <div class="form-group">
               <label for="">Trạng thái</label>

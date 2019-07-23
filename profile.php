@@ -27,10 +27,10 @@ $row = mysqli_fetch_assoc($profile);
 					<td>Địa chỉ</td>
 					<td><?php echo $row['address'] ?></td>
 				</tr>
-				<tr>
+<!-- 				<tr>
 					<td>password</td>
-					<td><?php echo $row['password'] ?></td>
-				</tr>
+					<td><?php //echo $row['password'] ?></td>
+				</tr> -->
 			</table>
 			<a href="profile_edit.php" class="btn btn-primary">Sửa thông tin</a>
 		</div>

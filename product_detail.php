@@ -1,10 +1,5 @@
-<div class="content">
-	<div id="contain">
 		<?php include "header.php"; 
 	//sanr phaam lien qua
-		$pro = mysqli_query($connection,"SELECT * FROM product WHERE status = 1 LIMIT 10");
-
-
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		$c = mysqli_query($connection,"SELECT * FROM product WHERE id =$id");
 		$cat_id = mysqli_fetch_assoc($c);
@@ -16,14 +11,15 @@
 		$pro_detail = mysqli_fetch_assoc($query);
 		$images = mysqli_query($connection,"SELECT * FROM product_image WHERE product_id =$id");
 		$attribute_id = mysqli_query($connection,"SELECT * FROM product_attribute WHERE product_id=$id");
-		$color = mysqli_query($connection,"SELECT * FROM attribute WHERE type='color'");
-		$size = mysqli_query($connection,"SELECT * FROM attribute WHERE type='size'");
+		$color = mysqli_query($connection,"SELECT attribute_id , name FROM `product_attribute` JOIN `attribute`ON attribute_id = id AND product_id=$id AND type = 'color' " );
+		$size = mysqli_query($connection,"SELECT attribute_id , name FROM `product_attribute` JOIN `attribute`ON attribute_id = id AND product_id=$id AND type = 'size'");
 
 
 		?>
+<div class="content">
+	<div id="contain">
 		<br>
 		<div class="container">
-
 			<div class="row">
 				<div class="col-md-6">
 					<div class="product-preview">
@@ -50,12 +46,12 @@
 						<span class="amount" style="padding: 15px 0">
 							<?php if($pro_detail['sale_price']==0) :?>
 								<div class="product-thumb-info-content">
-									<span class="price pull-left" style="text-decoration: none"><?php echo $pro_detail['price']." "."VNĐ" ; ?></span>
+									<span class="price pull-left" style="text-decoration: none"><?php echo $pro_detail['price']." "."đ" ; ?></span>
 								</div>
 								<?php elseif ($pro_detail['sale_price']>0) :?>
 									<div class="product-thumb-info-content">
-										<span class="pull-leftl" style="text-decoration: line-through"><?php echo $pro_detail['price']." "."VNĐ" ; ?></span>
-										<span class="item-cat"><span class="price pull-left"><?php echo $pro_detail['sale_price']." "."VNĐ" ?></span></span>
+										<span class="pull-leftl" style="text-decoration: line-through"><?php echo $pro_detail['price']." "."đ" ; ?></span>
+										<span class="item-cat"><span class="price pull-left"><?php echo $pro_detail['sale_price']." "."đ" ?></span></span>
 									</div>
 								<?php endif; ?>
 							</span>
@@ -81,7 +77,7 @@
 												<option  value="">Mời bạn chọn màu</option>}
 												<?php foreach ($color as $cl): ?>
 													<option>
-														<?php echo $cl['name'] ?>
+														<?php echo $cl['name']?>
 
 													</option>
 												<?php endforeach; ?>
@@ -106,16 +102,16 @@
 								</ul>
 							</form>
 							<div class="clearfix"></div><br>
-							<ul class="list-unstyled product-meta">
+							<!-- <ul class="list-unstyled product-meta">
 								<li>Sku: 54329843</li>
 								<li>Categories: <a href="#">Leather</a> <a href="#">Jeans</a> <a href="#">Men</a></li>
 								<li>Tags: <a href="#">Shoes</a> <a href="#">Jeans</a> <a href="#">Men</a> <a href="#">T-shirt</a></li>
-							</ul>
+							</ul> -->
 
 							<div class="panel-group" id="accordion">
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Description</a> </h4>
+										<h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Mô tả</a> </h4>
 									</div>
 									<div id="collapseOne" class="panel-collapse collapse in">
 										<div class="panel-body"> 
@@ -126,6 +122,8 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Reviews (3)</a> </h4>
+										<!-- Load Facebook SDK for JavaScript -->
+<iframe src="https://www.facebook.com/plugins/comment_embed.php?href=https%3A%2F%2Fwww.facebook.com%2Fzuck%2Fposts%2F10102577175875681%3Fcomment_id%3D1193531464007751%26reply_comment_id%3D654912701278942&width=560&include_parent=false&height=134&appId" width="560" height="134" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 									</div>
 									<div id="collapseThree" class="panel-collapse collapse">
 										<div class="panel-body post-comments">

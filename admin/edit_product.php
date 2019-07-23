@@ -12,7 +12,6 @@
 
             $arrayCheck[] = $at['attribute_id'];
         }
-
   ?>
 
   <div class="content-wrapper">
@@ -46,19 +45,20 @@
                $image = $f_name;
              }
            }
-
+      // upload multiple image
            if (!empty($_FILES['image_else']['name']) && count($_FILES['image_else']['name'])>0) {
-              $deleteImage = mysqli_query($connection, "DELETE FROM product_image WHERE product_id = $id");
               $quantity=count($_FILES['image_else']['name']);
+              if( $quantity >= 1){
+                      $deleteImage = mysqli_query($connection, "DELETE FROM product_image WHERE product_id = $id");
+              }
               $f = $_FILES['image_else'];
                 for ($i=0; $i < $quantity; $i++) { 
                   $f_name = time(). '-' .$f['name'][$i];
                     if (move_uploaded_file($f['tmp_name'][$i], '../uploads/'.$f_name)) {
-
                       $p =  mysqli_query($connection, "INSERT INTO product_image(product_id,image) VALUES ($id,'$f_name') ");
+                  }
 
-            
-                }
+                
               }
             }
 
@@ -76,9 +76,7 @@
             $size = $_POST['size'];
             $color = $_POST['color'];
 
-            //chưa update được img_else
-            // $image_else=$_POST['image_else[]'];
-           
+
            //Update dữ liệu
 
            $sql = "UPDATE `product` SET `name` = '$name', `image` = '$image', `content` = ' $content ',`category_id`='$category_id', `price` = ' $price', `sale_price` = ' $sale_price', `status` = '$status' WHERE `product`.`id` = $id";
@@ -116,7 +114,7 @@
               <input type="file" name="image" id="add_img" class="form-control">
               <div class="col-md-3">
                 <a href="#" class="thumbnail">
-              <img src="../uploads/<?php echo $pro['image']?>" alt="" style="width: " id="show_img">
+                  <img src="../uploads/<?php echo $pro['image']?>" id="show_img">
                 </a>
               </div>
             </div>

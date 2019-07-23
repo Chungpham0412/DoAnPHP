@@ -3,9 +3,9 @@
   $attribute = mysqli_query($connection,"SELECT * FROM attribute");
   if(isset($_POST["SubmitSearch"])){
     $search = $_POST["search"];
-    $sqli_1 = mysqli_query($connection,"SELECT * FROM category WHERE name LIKE '%$search%'");
+    $sqli_1 = mysqli_query($connection,"SELECT * FROM attribute WHERE name LIKE '%$search%'");
     if($sqli_1){
-      $cats = $sqli_1;
+      $attribute = $sqli_1;
     }else{
       echo "Thử lại ";
     }
@@ -26,7 +26,7 @@
         <div class="box-header with-border">
           <form action="" method="POST" class="form-inline" role="form">
             <div class="form-group">
-              <input type="text" class="form-control" id="" placeholder="Input field" name="search">
+              <input type="text" class="form-control" id="" placeholder="Tìm kiếm" name="search">
             </div>
             <button type="submit" class="btn btn-primary" name="SubmitSearch" ><i class="fa fa-search"></i></button>
             <a href="add_attribute.php" class="btn btn-success">Thêm mới</a>
@@ -59,8 +59,8 @@
                   <?php echo $attri['type'] ?>
                 </td>
                 <td>
-                  <a href="edit_attriegory.php?id=<?php echo $attri['id'] ?>" class="btn btn-xs btn-success">Sửa</a>
-                  <a href="delete_attriegory.php?id=<?php echo $attri['id'] ?>" onclick="return confirm('Bạn có chắc chắn xóa thuộc tính này không?')" class="btn btn-xs btn-info">Xóa</a>
+                  <a href="edit_attribute.php?id=<?php echo $attri['id'] ?>" class="btn btn-xs btn-primary">Sửa</a>
+                  <a href="delete_attribute.php?id=<?php echo $attri['id'] ?>" onclick="return confirm('Bạn có chắc chắn xóa thuộc tính này không?')" class="btn btn-xs btn-danger">Xóa</a>
                 </td>
               </tr>
             <?php } ?>

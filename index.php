@@ -5,10 +5,10 @@ $banner = mysqli_query($connection,"SELECT * FROM banner where status = 1 ORDER 
 //Top 10 sell
 $product_sale = mysqli_query($connection,"SELECT * FROM product where sale_price > 0 && status = 1 ORDER BY sale_price DESC LIMIT 10");
 //man
-$nam="SELECT product.id, product.name,product.image,product.price,product.sale_price,product.status,category.parent_id FROM product join category on product.category_id=category.id WHERE parent_id = 1 && product.status = 1 ORDER BY product.name DESC LIMIT 8";
+$nam="SELECT product.id, product.name,product.image,product.price,product.sale_price,product.status,category.parent_id FROM product join category on product.category_id=category.id WHERE parent_id = 1 && product.status = 1 ORDER BY product.id DESC LIMIT 8";
 $product_man = mysqli_query($connection,$nam);
 //women
-$nu="SELECT product.id, product.name,product.image,product.price,product.sale_price,product.status,category.parent_id FROM product join category on product.category_id=category.id WHERE parent_id = 2 && product.status = 1 ORDER BY product.name DESC LIMIT 8";
+$nu="SELECT product.id, product.name,product.image,product.price,product.sale_price,product.status,category.parent_id FROM product join category on product.category_id=category.id WHERE parent_id = 2 && product.status = 1 ORDER BY product.id DESC LIMIT 8";
 $product_woman = mysqli_query($connection,$nu);
 ?>		
 		<!-- Begin Login -->
@@ -27,7 +27,7 @@ $product_woman = mysqli_query($connection,$nu);
 								<div class="item-caption-wrap">
 									<p class="item-cat"><a href="#"></a></p>
 									<h2><?php echo $ban['name'] ?></h2>
-									<a href="#" class="btn btn-white hidden-xs">Shop Now</a>
+									<!-- <a href="#" class="btn btn-white hidden-xs">Shop Now</a> -->
 								</div>
 							</div>
 						</div>
@@ -41,10 +41,10 @@ $product_woman = mysqli_query($connection,$nu);
 			<section class="highlight">
 				<div class="container">
 					<div class="row row-narrow">
-						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 animation">
+						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 animation">
 							<div class="cat-item">
 								<figure>
-									<a href="shop-full-width.html"><img class="img-responsive" alt="" src="public/images/content/products/cat-4.jpg"></a>
+									<a href="blog.php"><img class="img-responsive" alt="" src="public/images/content/products/cat-4.jpg"></a>
 									<figcaption>
 										<div class="cat-description">
 											<h3>Fashion and Style</h3>
@@ -54,10 +54,10 @@ $product_woman = mysqli_query($connection,$nu);
 								</figure>
 							</div>
 						</div>
-						<div class="col-xs-6 animation">
+						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 animation">
 							<div class="cat-item">
 								<figure>
-									<a href="shop-full-width.html"><img class="img-responsive" alt="" src="public/images/content/products/cat-5.jpg"></a>
+									<a href="blog.php"><img class="img-responsive" alt="" src="public/images/content/products/cat-5.jpg"></a>
 									<figcaption>
 										<div class="cat-description">
 											<h3>Men’s Shoes</h3>
@@ -67,10 +67,10 @@ $product_woman = mysqli_query($connection,$nu);
 								</figure>
 							</div>
 						</div>
-						<div class="col-xs-6 col-sm-3 animation">
+						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 animation">
 							<div class="cat-item">
 								<figure>
-									<a href="shop-full-width.html"><img class="img-responsive" alt="" src="public/images/content/products/cat-6.jpg"></a>
+									<a href="blog.php"><img class="img-responsive" alt="" src="public/images/content/products/cat-6.jpg"></a>
 									<figcaption>
 										<div class="cat-description">
 											<h3>Watch Style</h3>
@@ -89,21 +89,18 @@ $product_woman = mysqli_query($connection,$nu);
 			<!-- Begin Top Selling -->
 			<section class="products-slide">
 				<div class="container">
-					<h2 class="title"><span>Top Selling</span></h2>
+					<h2 class="title"><span>Top 10 giảm giá</span></h2>
 					<div class="row">
 						<div id="owl-product-slide" class="owl-carousel product-slide">
 						<?php foreach ($product_sale as $pro ) {?>
-							<div class="col-md-12 animation">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 animation" >
 								<div class="item product">
 									<div class="product-thumb-info">
-										<div class="product-thumb-info-image">
+										<div class="product-thumb-info-image" style="height: 300px; overflow:hidden;">
 											<span class="product-thumb-info-act">
 												<a href="product_detail.php?id=<?php echo $pro['id']?>" class="view-product">
 													<span><i class="fa fa-external-link"></i></span>
 												</a>
-												<!-- <a href="handling_cart.php?id=<?php //echo $pro['id']?>" class="add-to-cart-product"> -->
-													<!-- <span><i class="fa fa-shopping-cart"></i></span>
-												</a> -->
 											</span>
 											<img alt="" class="img-responsive" src="uploads/<?php echo $pro['image'] ?>">
 										</div>
@@ -128,8 +125,8 @@ $product_woman = mysqli_query($connection,$nu);
 			<section id="lookbook">
 				<div class="container">
 					<div class="lookbook">
-						<h2><a href="#">Lookbook Women</a></h2>
-						<p>Etiam aliquam risus ante, quis ultrices enim porta a. Integer et dolor sit amet enim feugiat faucibus. Donec sit amet egestas orci. Proin facilisis mi ornare turpis sollicitudin; vel rutrum est viverra. Vestibulum hendrerit egestas semper.</p>
+						<h2><a href="#">Cavett Robert</a></h2>
+						<p style = "font-size: 15px">Cuộc đời tựa như 1 viên đá, chính bạn là người quyết định để viên đá ấy bám rêu hay trở thành viên ngọc sáng.</p>
 					</div>
 				</div>
 			</section>
@@ -138,7 +135,7 @@ $product_woman = mysqli_query($connection,$nu);
 			<!-- Begin New Products -->
 			<section class="product-tab" style="padding-bottom: 50px">
 				<div class="container">
-					<h2 class="title"><span>New Products</span></h2>
+					<h2 class="title"><span>Sản phẩm mới nhất</span></h2>
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs pro-tabs text-center animation" role="tablist">
 						<li class="active"><a href="#man" role="tab" data-toggle="tab">Nam</a></li>
@@ -153,7 +150,7 @@ $product_woman = mysqli_query($connection,$nu);
 									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 animation" >
 										<div class="product">
 											<div class="product-thumb-info" >
-												<div class="product-thumb-info-image">
+												<div class="product-thumb-info-image" style="height: 300px; overflow:hidden;">
 													<span class="product-thumb-info-act">
 														<a href="product_detail.php?id=<?php echo $pro_man['id'] ?>">
 															<span><i class="fa fa-external-link"></i></span>
@@ -164,7 +161,7 @@ $product_woman = mysqli_query($connection,$nu);
 													</span>
 													<img alt="" class="img-responsive" src="uploads/<?php echo $pro_man['image']?>">
 												</div>
-												<div class="product-thumb-info-content" style="height: 30px">
+												<div class="product-thumb-info-content" style="height: 50px">
 													<?php if($pro_man['sale_price']==0) :?>
 														<div class="product-thumb-info-content">
 															<span class="price pull-right" style="text-decoration: none"><?php echo number_format($pro_man['price'])." "."đ" ; ?></span>
@@ -192,7 +189,7 @@ $product_woman = mysqli_query($connection,$nu);
 									<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 animation">
 										<div class="product">
 											<div class="product-thumb-info">
-												<div class="product-thumb-info-image">
+												<div class="product-thumb-info-image" style="height: 300px; overflow:hidden;">
 													<span class="product-thumb-info-act">
 														<a href="product_detail.php?id=<?php echo $pro_woman['id'] ?>">
 															<span><i class="fa fa-external-link"></i></span>
@@ -201,7 +198,7 @@ $product_woman = mysqli_query($connection,$nu);
 													</span>
 													<img alt="" class="img-responsive" src="uploads/<?php echo $pro_woman['image'] ?>">
 												</div>
-												<div class="product-thumb-info-content" style="height: 30px">
+												<div class="product-thumb-info-content" style="height: 50px">
 													<?php if($pro_woman['sale_price']==0) :?>
 														<div class="product-thumb-info-content" >
 															<span class="price pull-right" style="text-decoration: none"><?php echo number_format($pro_woman['price'])." "."đ" ; ?></span>
@@ -235,14 +232,14 @@ $product_woman = mysqli_query($connection,$nu);
 					<div id="owl-text-slide" class="owl-carousel">
 						<div class="item">
 							<blockquote>
-								<p>Design is a funny word. Some people think design means how it looks. But of course, if you dig deeper, it’s really how it works.</p>
-								<footer>by <cite title="Steve Jobs">Steve Jobs</cite></footer>
+								<p>Hãy làm những thứ bạn phải làm cho đến khi bạn có thể làm những thứ bạn muốn làm.</p>
+								<footer>by <cite title="Steve Jobs">Khuyết danh</cite></footer>
 							</blockquote>
 						</div>
 						<div class="item">
 							<blockquote>
-								<p>They may forget what you said, but they will never forget how you made them feel.</p>
-								<footer>by <cite title="Steve Jobs">Carl W. Buechner</cite></footer>
+								<p>Người ta rất ít khi thành công trừ khi họ tìm thấy niềm vui trong những gì họ đang làm.</p>
+								<footer>by <cite title="Steve Jobs">Dale Camegie</cite></footer>
 							</blockquote>
 						</div>
 					</div>
@@ -256,11 +253,11 @@ $product_woman = mysqli_query($connection,$nu);
 				<div class="container">
 					<h2 class="title"><span>Latest from the blog</span></h2>
 					<div class="row">
-						<div class="col-xs-6 animation">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 animation">
 							<article class="post">
 								<div class="post-image">
 									<span class="post-info-act">
-										<a href="blog-single.html"><i class="fa fa-caret-right"></i></a>
+										<a href="blog.php"><i class="fa fa-caret-right"></i></a>
 									</span>
 									<img class="img-responsive" src="public/images/content/blog/demo-1.jpg" alt="Blog">
 								</div>
@@ -268,11 +265,11 @@ $product_woman = mysqli_query($connection,$nu);
 								<p class="post-meta">15th December 2014</p>
 							</article>
 						</div>
-						<div class="col-xs-6 animation">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 animation">
 							<article class="post">
 								<div class="post-image">
 									<span class="post-info-act">
-										<a href="blog-single.html"><i class="fa fa-camera"></i></a>
+										<a href="blog.php"><i class="fa fa-camera"></i></a>
 									</span>
 									<img class="img-responsive" src="public/images/content/blog/demo-2.jpg" alt="Blog">
 								</div>

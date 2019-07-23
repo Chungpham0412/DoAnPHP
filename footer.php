@@ -4,52 +4,31 @@
 			<div class="container">
 				<div class="upper-foot">
 					<div class="row">
-						<div class="col-xs-6 col-sm-3">
-							<h2>Contact detail</h2>
+						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+							<h2>Chi tiết liên hệ</h2>
 							<address>
-								<i class="fa fa-map-marker"></i> No.123 Pellentesque nec erat.<br>
-								Aenean semper, neque non faucibus.<br>
-								<i class="fa fa-phone"></i> Phone. (123) 456-7890<br>
+								<i class="fa fa-map-marker"></i> Số 236 Hoàng Quốc Việt<br>
+								Bắc Từ Liêm - Hà Nội<br>
+								<i class="fa fa-phone"></i> Điện thoại. 035 3223 446<br>
 								<i class="fa fa-fax"></i> Fax. (123) 456-7890<br>
-								<i class="fa fa-envelope"></i> E-mail. <a href="mailto:#">first.last@example.com</a>
+								<i class="fa fa-envelope"></i> E-mail. <a href="mailto:#">flatizeshop@gmail.com</a>
 							</address>
 						</div>
-						<div class="col-xs-6 col-sm-3">
-							<h2>Useful links</h2>
+						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+							<h2>Liên kết</h2>
 							<ul class="list-unstyled">
-								<li><a href="#">Track Orders</a></li>
-								<li><a href="#">FAQs</a></li>
-								<li><a href="#">Services</a></li>
-								<li><a href="#">Free Credit Report</a></li>
-								<li><a href="#">Terms and Conditions</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Community Guidelines</a></li>
+								<li><a href="#">Dịch vụ</a></li>
+								<li><a href="#">Hướng dẫn mua hàng</a></li>
+								<li><a href="#">Điều khoản sử dụng</a></li>
+								<li><a href="#">Chính sách đổi trả</a></li>
+								<li><a href="#">Nội quy của hàng</a></li>
 							</ul>
 						</div>
-						<div class="col-xs-6 col-sm-3">
-							<h2>Tags</h2>
-							<ul class="list-inline tagclouds">
-								<li><a href="#">Image</a></li>
-								<li><a href="#">Features</a></li>
-								<li><a href="#">Gallery</a></li>
-								<li><a href="#">Post Formats</a></li>
-								<li><a href="#">Typography</a></li>
-								<li><a href="#">WooCommerce</a></li>
-								<li><a href="#">Shortcodes</a></li>
-								<li><a href="#">Best Sellers</a></li>
-								<li><a href="#">Slideshow</a></li>
-							</ul>
+						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.644521611744!2d105.78423511493291!3d21.046904985988586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab326aa9bfef%3A0xd60313e072fc5ac4!2zMjM2IEhvw6BuZyBRdeG7kWMgVmnhu4d0LCBD4buVIE5odeG6vywgVOG7qyBMacOqbSwgSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1563850262688!5m2!1svi!2s" width="333" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
 						</div>
-						<div class="col-xs-6 col-sm-3">
-							<h2>Don’t miss out</h2>
-							<p>In venenatis neque a eros laoreet eu placerat erat suscipit. Fusce cursus, erat ut scelerisque.</p>
-							<form class="form-inline form-newsletter" role="form">
-								<div class="form-group">
-									<label class="sr-only" for="exampleInputEmail2">Email address</label>
-									<input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter your email here">
-								</div>
-								<button type="submit" class="btn"><i class="fa fa-caret-right"></i></button>
-							</form>
+						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+						<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBachkhoaAptech236HoangQuocViet%2F&tabs=timeline&width=333&height=333&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="333" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 						</div>
 					</div>
 				</div>
